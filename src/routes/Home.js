@@ -6,6 +6,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 export const API_KEY = 'aef59e66e0a35709a7f0c493826379b3';
 export const BASE_URL = 'https://api.themoviedb.org/3';
+const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
 /*
   1. 장르 정보를 외부 파일의 함수로 빼서 저장하여 movie컴포넌트에서 그 함수를 호출한다.
   2. 일단 UI조정후 클릭시 상세정보 나오게, 배경화면은 backdrop_path로 접근
@@ -19,7 +20,7 @@ class Home extends React.Component {
   };
 
   getTopRated = async () => {
-    const link = `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=ko-KR`;
+    const link = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`;
     const {
       data: { results },
     } = await axios.get(link);
@@ -44,7 +45,7 @@ class Home extends React.Component {
   render() {
     const { isLoading, results, genres } = this.state;
     return (
-      <container>
+      <section className='container'>
         {isLoading ? (
           <div className='loader'>
             <span className='loader__text'>
@@ -52,23 +53,23 @@ class Home extends React.Component {
             </span>
           </div>
         ) : (
-          <section className='container'>
-            <div className='movies'>
-              {results.map((movie) => (
-                <Movie
-                  key={movie.id}
-                  title={movie.title}
-                  _date={movie.release_date}
-                  overview={movie.overview}
-                  _poster={movie.poster_path}
-                  vote={movie.vote_average}
-                  genres={movie.genre_ids}
-                />
-              ))}
-            </div>
-          </section>
+          // <div className='movies__row'>
+          <div className='movies'>
+            {results.map((movie) => (
+              <Movie
+                key={movie.id}
+                title={movie.title}
+                _date={movie.release_date}
+                overview={movie.overview}
+                poster={IMG_PATH + movie.poster_path}
+                vote={movie.vote_average}
+                genres={movie.genre_ids}
+              />
+            ))}
+          </div>
+          //</div>
         )}
-      </container>
+      </section>
     );
   }
 }

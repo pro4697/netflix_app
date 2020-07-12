@@ -9,8 +9,8 @@ function Navigation() {
     <div>
       <div className='nav__top'>
         <Link to='/'>
-          <div class='nav__top__logo'>
-            <img src={Logo} class='nav__top__logo'></img>
+          <div className='nav__top__logo'>
+            <img src={Logo} className='nav__top__logo'></img>
           </div>
         </Link>
       </div>
@@ -23,12 +23,12 @@ function Navigation() {
         </div>
         <div className='nav__bottom__content'>
           <Link to='/about'>
-            <i class='fa fa-tv'></i>
+            <i className='fa fa-tv'></i>
           </Link>
         </div>
         <div className='nav__bottom__content'>
           <Link to='/about'>
-            <i class='fa fa-search'></i>
+            <i className='fa fa-search'></i>
           </Link>
         </div>
       </div>
