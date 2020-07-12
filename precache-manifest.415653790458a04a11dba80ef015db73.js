@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "82e212bd120103b814125f7900b1231e",
+    "revision": "7f7faf1c9a561af200435fd6d5e408f2",
     "url": "/netflix_app/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/netflix_app/static/css/2.189b79eb.chunk.css"
   },
   {
-    "revision": "3f440acca338798f7a29",
-    "url": "/netflix_app/static/css/main.11b23d80.chunk.css"
+    "revision": "98b1478e89e00630165c",
+    "url": "/netflix_app/static/css/main.be86427c.chunk.css"
   },
   {
     "revision": "20cfa162bac2fbe273d0",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/netflix_app/static/js/2.7318b7ca.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3f440acca338798f7a29",
-    "url": "/netflix_app/static/js/main.2d5e0b30.chunk.js"
+    "revision": "98b1478e89e00630165c",
+    "url": "/netflix_app/static/js/main.ce91b83a.chunk.js"
   },
   {
     "revision": "e6d7a0c27e50f2459149",
