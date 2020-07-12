@@ -1,0 +1,72 @@
+.movies .movie {
+  margin-bottom: 40px;
+  font-weight: 300;
+  max-width: 135px;
+  border-radius: 10px;
+  color: #adaeb9;
+  transition: all 300ms ease-out;
+}
+.movies .movie:hover {
+  background-color: royalblue;
+  transition: all 300ms ease-out;
+}
+.movie:hover .movie img {
+  height: 5px;
+  width: 3%;
+}
+.movies .movie a {
+  /* display: grid; 영화정보 옆으로 표시
+  grid-template-columns: minmax(150px, 1fr) 2fr;
+  grid-gap: 20px; */
+  text-decoration: none;
+  color: inherit;
+}
+.movie img {
+  position: relative;
+  height: auto;
+  width: 100%;
+  border-radius: 10px;
+}
+.movie .movie__title,
+.movie .movie__info {
+  width: 100%;
+  margin: 0;
+  font-weight: 400;
+}
+.movie .movie__title {
+  text-align: left;
+  font-size: 13px;
+  color: white;
+}
+
+.movie__year {
+  float: left;
+  font-size: 11px;
+  justify-content: left;
+  text-align: left;
+}
+.movie__star {
+  float: right;
+  font-size: 12px;
+  justify-content: right;
+  text-align: right;
+}
+
+.movie .movie__genres {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px 0px;
+}
+
+.movie .movie__info {
+  font-size: 11px;
+}
+
+.fa.fa-star {
+  color: #ffc83d;
+  font-size: 10px;
+  margin-right: 5px;
+}
