@@ -14,7 +14,6 @@ export const BASE_URL = 'https://api.themoviedb.org/3';
 class Home extends React.Component {
   state = {
     isLoading: true,
-    //movies: [],
     results: [],
     genres: [],
   };
@@ -37,23 +36,7 @@ class Home extends React.Component {
     console.log({ genres });
   };
 
-  // getMovies = async () => {
-  //   //const tmp = await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating');
-  //   // 구조 분해 할당 json안의 데이터 중에 data.data.movies만을 추출해 movies객체에 저장
-  //   const {
-  //     data: {
-  //       data: { movies },
-  //     },
-  //   } = await axios.get(
-  //     'https://yts-proxy.now.sh/list_movies.json?sort_by=rating'
-  //   );
-  //   this.setState({ movies, isLoading: false });
-  //   console.log({ movies });
-  // }; // json 파일 로딩 완료시 isLoading변수를 false로 바꿈. setState함수 호출다음 자동으로 render함수 호출
-
   componentDidMount() {
-    // 영화 데이터 로딩
-    //this.getMovies();
     this.getGenre();
     this.getTopRated();
   }
@@ -61,7 +44,7 @@ class Home extends React.Component {
   render() {
     const { isLoading, results, genres } = this.state;
     return (
-      <section className='container'>
+      <container>
         {isLoading ? (
           <div className='loader'>
             <span className='loader__text'>
@@ -69,21 +52,23 @@ class Home extends React.Component {
             </span>
           </div>
         ) : (
-          <div className='movies'>
-            {results.map((movie) => (
-              <Movie
-                key={movie.id}
-                title={movie.title}
-                _date={movie.release_date}
-                overview={movie.overview}
-                _poster={movie.poster_path}
-                vote={movie.vote_average}
-                genres={movie.genre_ids}
-              />
-            ))}
-          </div>
+          <section className='container'>
+            <div className='movies'>
+              {results.map((movie) => (
+                <Movie
+                  key={movie.id}
+                  title={movie.title}
+                  _date={movie.release_date}
+                  overview={movie.overview}
+                  _poster={movie.poster_path}
+                  vote={movie.vote_average}
+                  genres={movie.genre_ids}
+                />
+              ))}
+            </div>
+          </section>
         )}
-      </section>
+      </container>
     );
   }
 }
