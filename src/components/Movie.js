@@ -23,12 +23,15 @@ function Movie({ title, _date, overview, poster, backdrop, vote, genres }) {
         <div className='movie__data'>
           <h3 className='movie__title'>
             {pattern_eng.test(title)
+              ? title.slice(0, 16) + '...'
+              : title.slice(0, 7) + '...'}
+            {/* {pattern_eng.test(title)
               ? title.length > 16
                 ? title.slice(0, 16) + '...'
                 : title
               : title.length > 7
               ? title.slice(0, 7) + '...'
-              : title}
+              : title} */}
           </h3>
           <div className='movie__year'>{date[0]}</div>
           <div className='movie__star'>
