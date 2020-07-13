@@ -53,6 +53,7 @@
   .detail__description {
     display: block;
     margin-top: 350px;
+    width: 80%;
     float: left;
   }
 }
