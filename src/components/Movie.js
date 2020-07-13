@@ -7,6 +7,13 @@ import 'font-awesome/css/font-awesome.min.css';
 function Movie({ title, _date, overview, poster, backdrop, vote, genres }) {
   const date = _date.split('-');
   const pattern_eng = /[a-zA-Z]/;
+  title = pattern_eng.test(title)
+    ? title.length > 16
+      ? title.slice(0, 16) + '...'
+      : title
+    : title.length > 9
+    ? title.slice(0, 9) + '...'
+    : title;
   // 영어 21 한글 10
   return (
     <div className='movie'>
@@ -22,13 +29,14 @@ function Movie({ title, _date, overview, poster, backdrop, vote, genres }) {
         />
         <div className='movie__data'>
           <h3 className='movie__title'>
-            {pattern_eng.test(title)
+            {title}
+            {/* {pattern_eng.test(title)
               ? title.length > 16
                 ? title.slice(0, 16) + '...'
                 : title.slice(0, 16) + 'ㅤ'
               : title.length > 9
               ? title.slice(0, 9) + '...'
-              : title.slice(0, 9) + 'ㅤ'}
+              : title.slice(0, 9) + 'ㅤ'} */}
           </h3>
           <div className='movie__year'>{date[0]}</div>
           <div className='movie__star'>
