@@ -7,13 +7,7 @@ import 'font-awesome/css/font-awesome.min.css';
 function Movie({ title, _date, overview, poster, backdrop, vote, genres }) {
   const date = _date.split('-');
   const pattern_eng = /[a-zA-Z]/;
-  title = pattern_eng.test(title)
-    ? title.length > 16
-      ? title.slice(0, 16) + '...'
-      : title
-    : title.length > 9
-    ? title.slice(0, 9) + '...'
-    : title;
+
   // 영어 21 한글 10
   return (
     <div className='movie'>
