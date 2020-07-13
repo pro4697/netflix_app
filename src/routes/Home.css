@@ -34,7 +34,12 @@
     width: 100%;
     padding-left: 0;
     white-space: nowrap;
-    overflow-x: hidden;
+    overflow-x: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .movies::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
   }
 }
 
