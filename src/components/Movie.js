@@ -37,16 +37,6 @@ function Movie({ title, _date, overview, poster, backdrop, vote, genres }) {
             <i className='fa fa-star' />
             {vote}
           </div>
-          {/* <ul className='movie__genres'>
-            {genres.map((genre, index) => {
-              return (
-                <li key={index} className='movie__genre'>
-                  {genre}
-                </li>
-              );
-            })}
-          </ul> */}
-          {/* <p className='movie__summary'>{overview.slice(0, 180)}...</p> */}
         </div>
       </Link>
     </div>

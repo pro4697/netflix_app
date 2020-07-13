@@ -3,10 +3,10 @@
 }
 
 .container {
+  display: block;
   padding-top: 50px;
-  padding-bottom: 50px;
   height: 100%;
-  display: flex;
+  margin-bottom: 20px;
   justify-content: center;
 }
 
@@ -22,10 +22,11 @@
 .movies {
   display: grid;
   grid-template-columns: repeat(auto-fill, 100px);
-  grid-gap: 25px;
+  grid-gap: 35px;
   padding-left: 20px;
   padding-right: 40px;
-  padding-top: 30px;
+  padding-top: 20px;
+  margin-bottom: 40px;
   width: 100%;
 }
 

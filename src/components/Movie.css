@@ -3,16 +3,15 @@
   display: inline-block;
   width: 100px;
   height: 195px;
-  margin-bottom: 40px;
   font-weight: 300;
   color: #adaeb9;
-  margin-left: 30px;
+  margin-left: 3.5vw;
   transition: all 300ms ease-out;
   border-radius: 5px;
 }
 
-.movies .movie:hover {
-  background-color: royalblue;
+.movie:hover .movie__poster {
+  opacity: 0.7;
   transition: all 300ms ease-out;
 }
 
