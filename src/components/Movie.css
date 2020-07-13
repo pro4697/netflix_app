@@ -46,6 +46,8 @@
   position: absolute;
   width: 100%;
   bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: 15;
   font-weight: 400;
   text-align: left;
   font-size: 13px;
