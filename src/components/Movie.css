@@ -31,10 +31,15 @@
   border-radius: 5px;
 }
 
+.movie__data {
+  position: relative;
+  bottom: 0;
+}
+
 .movie .movie__title,
 .movie .movie__info {
   width: 100%;
-  margin: 0;
+  margin-bottom: 0;
   font-weight: 400;
 }
 .movie .movie__title {
