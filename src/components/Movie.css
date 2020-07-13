@@ -1,6 +1,8 @@
 .movies .movie {
+  position: relative;
   display: inline-block;
   width: 100px;
+  height: 192px;
   margin-bottom: 40px;
   font-weight: 300;
   color: #adaeb9;
@@ -32,14 +34,16 @@
 }
 
 .movie__data {
-  position: relative;
+  position: absolute;
+  bottom: 0px;
+  width: 100px;
   margin-top: 0;
-  padding-top: 0;
+  padding-top: auto;
 }
 
 .movie .movie__title {
   margin-top: 0;
-  padding-top: 0;
+  padding-top: auto;
   width: 100%;
   margin-bottom: 0;
   font-weight: 400;
@@ -55,7 +59,9 @@
   text-align: left;
 }
 .movie__star {
+  position: absolute;
   float: right;
+  right: 0;
   font-size: 12px;
   justify-content: right;
   text-align: right;
