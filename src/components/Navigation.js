@@ -10,7 +10,7 @@ function Navigation() {
       <div className='nav__top'>
         <Link to='/'>
           <div className='nav__top__logo'>
-            <img src={Logo} className='nav__top__logo'></img>
+            <img src={Logo} alt='logo' className='nav__top__logo'></img>
           </div>
         </Link>
       </div>

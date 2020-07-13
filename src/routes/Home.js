@@ -21,6 +21,7 @@ class Home extends React.Component {
 
   getTopRated = async () => {
     const link = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`;
+    // 한글에 설명이 없는것도 있음. 영어버전과 같이받아와서 overview만 추출하여 따로 넘겨줘야 할듯
     const {
       data: { results },
     } = await axios.get(link);
@@ -38,7 +39,7 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    this.getGenre();
+    //this.getGenre();
     this.getTopRated();
   }
 
@@ -62,6 +63,7 @@ class Home extends React.Component {
                 _date={movie.release_date}
                 overview={movie.overview}
                 poster={IMG_PATH + movie.poster_path}
+                backdrop={IMG_PATH + movie.backdrop_path}
                 vote={movie.vote_average}
                 genres={movie.genre_ids}
               />

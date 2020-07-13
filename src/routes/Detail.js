@@ -13,13 +13,17 @@ class Detail extends React.Component {
     const { location } = this.props;
     if (location.state) {
       return (
-        <div class='detail'>
-          <img src={location.state.poster}></img>
-          <span>
+        <div className='detail'>
+          <div
+            className='detail__backdrop'
+            style={{ backgroundImage: `url(${location.state.backdrop})` }}
+          />
+          <br />
+          <div className='detail__description'>
             {location.state.title}
             <br />
-          </span>
-          ,<span>{location.state.overview}</span>
+            {location.state.overview}
+          </div>
         </div>
       );
     } else {

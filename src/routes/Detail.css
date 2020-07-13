@@ -1,3 +1,19 @@
 .detail {
-  background-color: grey;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  opacity: 0.5;
+}
+
+.detail__backdrop {
+  position: absolute;
+  background: center/cover no-repeat;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+}
+
+.detail__description {
+  color: white;
 }

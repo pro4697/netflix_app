@@ -4,7 +4,7 @@ import './Movie.css';
 import { Link } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 
-function Movie({ title, _date, overview, poster, vote, genres }) {
+function Movie({ title, _date, overview, poster, backdrop, vote, genres }) {
   const date = _date.split('-');
   const pattern_eng = /[a-zA-Z]/;
   // 영어 21 한글 10
@@ -13,7 +13,7 @@ function Movie({ title, _date, overview, poster, vote, genres }) {
       <Link
         to={{
           pathname: '/movie-detail',
-          state: { title, date, overview, poster, vote, genres },
+          state: { title, date, overview, poster, backdrop, vote, genres },
         }}
       >
         <div
@@ -57,6 +57,8 @@ Movie.propTypes = {
   _date: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
+  backdrop: PropTypes.string.isRequired,
+  vote: PropTypes.number.isRequired,
   genres: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
