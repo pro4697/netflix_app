@@ -43,6 +43,7 @@
 }
 
 .movie .movie__title {
+  white-space: nowrap;
   position: absolute;
   width: 100%;
   bottom: 0;
