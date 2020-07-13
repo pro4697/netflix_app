@@ -27,22 +27,22 @@
   background: center/cover no-repeat;
   width: 100px;
   height: 160px;
-  margin-bottom: 4px;
+  margin-bottom: 0;
   border-radius: 5px;
 }
 
 .movie__data {
   position: relative;
-  bottom: 0;
+  margin-top: 0;
+  padding-top: 0;
 }
 
-.movie .movie__title,
-.movie .movie__info {
+.movie .movie__title {
+  margin-top: 0;
+  padding-top: 0;
   width: 100%;
   margin-bottom: 0;
   font-weight: 400;
-}
-.movie .movie__title {
   text-align: left;
   font-size: 13px;
   color: white;
