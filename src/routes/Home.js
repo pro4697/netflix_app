@@ -31,9 +31,6 @@ class Home extends React.Component {
       data: { results: upComing },
     } = await movieApi.upComing();
 
-    console.log({ nowPlaying });
-    console.log({ topRated });
-    console.log({ upComing });
     // 한글에 설명이 없는것도 있음. 영어버전과 같이받아와서 overview만 추출하여 따로 넘겨줘야 할듯
     this.setState({ nowPlaying, topRated, upComing, isLoading: false });
   }
