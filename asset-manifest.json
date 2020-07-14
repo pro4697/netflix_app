@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/netflix_app/static/css/main.7979fcf8.chunk.css",
-    "main.js": "/netflix_app/static/js/main.503a6ca6.chunk.js",
-    "main.js.map": "/netflix_app/static/js/main.503a6ca6.chunk.js.map",
+    "main.css": "/netflix_app/static/css/main.133f7202.chunk.css",
+    "main.js": "/netflix_app/static/js/main.a6d76659.chunk.js",
+    "main.js.map": "/netflix_app/static/js/main.a6d76659.chunk.js.map",
     "runtime-main.js": "/netflix_app/static/js/runtime-main.7f76722e.js",
     "runtime-main.js.map": "/netflix_app/static/js/runtime-main.7f76722e.js.map",
     "static/css/2.189b79eb.chunk.css": "/netflix_app/static/css/2.189b79eb.chunk.css",
-    "static/js/2.0dc57192.chunk.js": "/netflix_app/static/js/2.0dc57192.chunk.js",
-    "static/js/2.0dc57192.chunk.js.map": "/netflix_app/static/js/2.0dc57192.chunk.js.map",
+    "static/js/2.94d82664.chunk.js": "/netflix_app/static/js/2.94d82664.chunk.js",
+    "static/js/2.94d82664.chunk.js.map": "/netflix_app/static/js/2.94d82664.chunk.js.map",
     "index.html": "/netflix_app/index.html",
-    "precache-manifest.7a8f59c9592d3b83d6577ead31bc07ad.js": "/netflix_app/precache-manifest.7a8f59c9592d3b83d6577ead31bc07ad.js",
+    "precache-manifest.a6b954c951d4f289a743f464c2aaf192.js": "/netflix_app/precache-manifest.a6b954c951d4f289a743f464c2aaf192.js",
     "service-worker.js": "/netflix_app/service-worker.js",
     "static/css/2.189b79eb.chunk.css.map": "/netflix_app/static/css/2.189b79eb.chunk.css.map",
-    "static/css/main.7979fcf8.chunk.css.map": "/netflix_app/static/css/main.7979fcf8.chunk.css.map",
-    "static/js/2.0dc57192.chunk.js.LICENSE.txt": "/netflix_app/static/js/2.0dc57192.chunk.js.LICENSE.txt",
+    "static/css/main.133f7202.chunk.css.map": "/netflix_app/static/css/main.133f7202.chunk.css.map",
+    "static/js/2.94d82664.chunk.js.LICENSE.txt": "/netflix_app/static/js/2.94d82664.chunk.js.LICENSE.txt",
     "static/media/font-awesome.min.css": "/netflix_app/static/media/fontawesome-webfont.fee66e71.woff",
-    "static/media/netflix_logo.png": "/netflix_app/static/media/netflix_logo.e9706859.png"
+    "static/media/netflix_logo.png": "/netflix_app/static/media/netflix_logo.dd14e5ae.png"
   },
   "entrypoints": [
     "static/js/runtime-main.7f76722e.js",
     "static/css/2.189b79eb.chunk.css",
-    "static/js/2.0dc57192.chunk.js",
-    "static/css/main.7979fcf8.chunk.css",
-    "static/js/main.503a6ca6.chunk.js"
+    "static/js/2.94d82664.chunk.js",
+    "static/css/main.133f7202.chunk.css",
+    "static/js/main.a6d76659.chunk.js"
   ]
 }
