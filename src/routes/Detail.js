@@ -23,8 +23,11 @@ class Detail extends React.Component {
             className='detail__poster'
             style={{ backgroundImage: `url(${location.state.poster})` }}
           />
-          <div className='detail__description'>
+          <div className='detail__info'>
             <div className='detail__title'>{location.state.title}</div>
+            <div className='detail__title'>{location.state.date}</div>
+          </div>
+          <div className='detail__description'>
             <div className='detail__overview'>{location.state.overview}</div>
           </div>
         </div>
