@@ -3,6 +3,7 @@
   height: calc(100vh - 50px);
   width: 100%;
   padding-top: 50px;
+  padding-bottom: 40px;
 }
 
 .nav__container {
@@ -116,6 +117,7 @@
 }
 
 .detail__overview {
+  display: inline-block;
   font-size: 15px;
   line-height: 20px;
   letter-spacing: 2.2px;
@@ -178,8 +180,13 @@
 
   .detail__description {
     display: block;
-    width: 80%;
+    width: 95%;
+    padding-right: -10px;
     letter-spacing: 3px;
     float: right;
+  }
+
+  .detail__overview {
+    margin-right: -45px;
   }
 }

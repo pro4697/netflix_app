@@ -58,6 +58,9 @@ class Detail extends React.Component {
                     {over.map((overv) => (
                       <p>{overv}</p> // 문단별 줄바꿈
                     ))}
+                    <br />
+                    <br />
+                    <br />
                   </div>
                 </div>
               </div>
