@@ -8,30 +8,30 @@ import './Panel.css';
 function Panel({ title, _date, overview, poster, backdrop, vote, genres }) {
   const date = _date.split('-');
   return (
-    <div className='flicking__container'>
+    <div className='panel__container'>
       <div
-        className='flicking__backdrop'
+        className='panel__backdrop'
         style={{ backgroundImage: `url(${backdrop})` }}
       />
-      <div className='flicking__content'>
+      <div className='panel__content'>
         <div
-          className='flicking__poster'
+          className='panel__poster'
           style={{ backgroundImage: `url(${poster})` }}
         />
-        <div className='flicking__data'>
-          <div className='flicking__title'>{title.slice(0, 40)}</div>
-          <div className='flicking__vote'>
+        <div className='panel__data'>
+          <div className='panel__title'>{title.slice(0, 40)}</div>
+          <div className='panel__vote'>
             <FontAwesomeIcon icon={faStar} className='panel__star' />
             <span> {vote} / 10</span>
           </div>
-          <div className='flicking__overview'>{overview.slice(0, 50)}...</div>
+          <div className='panel__overview'>{overview.slice(0, 50)}...</div>
           <Link
             to={{
               pathname: '/movie-detail',
               state: { title, date, overview, poster, backdrop, vote, genres },
             }}
           >
-            <div className='flicking__button'>View details</div>
+            <div className='panel__button'>View Detail</div>
           </Link>
         </div>
       </div>

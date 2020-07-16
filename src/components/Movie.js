@@ -23,16 +23,7 @@ function Movie({ title, _date, overview, poster, backdrop, vote, genres }) {
           style={{ backgroundImage: `url(${poster})` }}
         />
         <div className='movie__data'>
-          <h3 className='movie__title'>
-            {title}
-            {/* {pattern_eng.test(title)
-              ? title.length > 16
-                ? title.slice(0, 16) + '...'
-                : title.slice(0, 16) + 'ㅤ'
-              : title.length > 9
-              ? title.slice(0, 9) + '...'
-              : title.slice(0, 9) + 'ㅤ'} */}
-          </h3>
+          <h3 className='movie__title'>{title}</h3>
           <div className='movie__year'>{date[0]}</div>
           <div className='movie__vote'>
             <FontAwesomeIcon icon={faStar} className='movie__star' />
@@ -45,7 +36,6 @@ function Movie({ title, _date, overview, poster, backdrop, vote, genres }) {
 }
 
 Movie.propTypes = {
-  // 타입 체크
   title: PropTypes.string.isRequired,
   _date: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,

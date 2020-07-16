@@ -50,6 +50,7 @@ class Home extends React.Component {
       </div>
     ) : (
       <motion.div
+        className='container'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -77,7 +78,7 @@ class Home extends React.Component {
           </Section>
         )}
         {upComing && upComing.length > 0 && (
-          <Section title='Up Coming'>
+          <Section title='UpComing'>
             <div className='movies'>{Movie_render(upComing)}</div>
           </Section>
         )}

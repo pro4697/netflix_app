@@ -6,7 +6,7 @@ function About(props) {
   return (
     <div className='about__container'>
       <span>준비중입니다...</span>
-      <span>- 윤기찬 -</span>
+      <span>- Kichan Yoon -</span>
     </div>
   );
 }

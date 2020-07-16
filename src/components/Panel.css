@@ -1,4 +1,4 @@
-.flicking__container {
+.panel__container {
   display: flex;
   position: relative;
   padding-left: calc(15%);
@@ -8,7 +8,7 @@
   border: 0;
 }
 
-.flicking__backdrop {
+.panel__backdrop {
   position: absolute;
   background: center/cover no-repeat;
   top: 0;
@@ -18,7 +18,7 @@
   opacity: 0.4;
 }
 
-.flicking__poster {
+.panel__poster {
   display: inline-block;
   overflow: hidden;
   justify-content: center;
@@ -28,7 +28,7 @@
   border-radius: 5px;
 }
 
-.flicking__content {
+.panel__content {
   height: 100%;
   width: 100%;
   position: relative;
@@ -36,20 +36,20 @@
   align-items: center;
 }
 
-.flicking__data {
+.panel__data {
   margin-left: 50px;
   width: 50%;
   align-items: flex-start;
 }
 
-.flicking__title {
+.panel__title {
   color: white;
-  font-weight: bold;
-  font-size: 19px;
+  font-size: 20px;
+  letter-spacing: 2px;
   margin-bottom: 10px;
 }
 
-.flicking__vote {
+.panel__vote {
   line-height: 20px;
   color: white;
   font-size: 13px;
@@ -57,23 +57,24 @@
   margin-bottom: 15px;
 }
 
-.flicking__overview {
+.panel__overview {
   color: rgb(220, 220, 220);
   font-size: 14px;
+  letter-spacing: 2px;
   font-weight: 500;
   /* line-height: 20px; */
 }
 
-.flicking__button {
+.panel__button {
   text-decoration: none;
   margin-right: 0;
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 12px;
   background-color: #e74c3c;
   color: white;
-  padding: 6px 10px;
+  padding: 7px 10px;
   width: 100px;
-  font-size: 14.5px;
+  font-size: 14px;
   border-radius: 3px;
   text-align: center;
 }
@@ -86,7 +87,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .flicking__container {
+  .panel__container {
     padding-left: calc(7%);
     height: 280px;
   }

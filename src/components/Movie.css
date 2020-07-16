@@ -48,7 +48,8 @@
   width: 100%;
   bottom: 0;
   padding-bottom: 0;
-  margin-bottom: 15;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
   font-weight: 400;
   text-align: left;
   font-size: 13px;
@@ -60,6 +61,7 @@
   bottom: 0;
   float: left;
   font-size: 11px;
+  letter-spacing: 1px;
   justify-content: left;
   text-align: left;
 }
