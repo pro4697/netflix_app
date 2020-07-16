@@ -1,11 +1,6 @@
 import React from 'react';
 import './App.css';
-import {
-  HashRouter,
-  Switch,
-  Route,
-  BrowserRouter as Router,
-} from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import About from './routes/About';
 import Home from './routes/Home';
@@ -22,7 +17,7 @@ function App() {
             <TransitionGroup>
               <CSSTransition
                 key={location.pathname}
-                timeout={220}
+                timeout={{ enter: 300, exit: 300 }}
                 classNames='fade'
               >
                 <Switch location={location}>
