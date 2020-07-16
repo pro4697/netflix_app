@@ -1,0 +1,86 @@
+.flicking__container {
+  display: flex;
+  position: relative;
+  padding-left: calc(15%);
+  height: 50vh;
+  width: 100%;
+  /* padding-left: calc(50% / 7); */
+  border: 0;
+}
+
+.flicking__backdrop {
+  position: absolute;
+  background: center/cover no-repeat;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.4;
+}
+
+.flicking__poster {
+  display: inline-block;
+  overflow: hidden;
+  justify-content: center;
+  background: center/cover no-repeat;
+  width: 100px;
+  height: 160px;
+  border-radius: 5px;
+}
+
+.flicking__content {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.flicking__data {
+  margin-left: 50px;
+  width: 50%;
+  align-items: flex-start;
+}
+
+.flicking__title {
+  color: white;
+  font-weight: bold;
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.flicking__vote {
+  line-height: 20px;
+  color: white;
+  font-size: 13px;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.flicking__overview {
+  color: rgb(220, 220, 220);
+  font-size: 14px;
+  font-weight: 500;
+  /* line-height: 20px; */
+}
+
+.flicking__button {
+  text-decoration: none;
+  margin-right: 0;
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #e74c3c;
+  color: white;
+  padding: 6px 10px;
+  width: 100px;
+  font-size: 14.5px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .flicking__container {
+    padding-left: calc(7%);
+    height: 290px;
+  }
+}

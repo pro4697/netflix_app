@@ -6,7 +6,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 function Movie({ title, _date, overview, poster, backdrop, vote, genres }) {
   const date = _date.split('-');
-  const pattern_eng = /[a-zA-Z]/;
+  //const pattern_eng = /[a-zA-Z]/;
 
   // 영어 21 한글 10
   return (
@@ -33,7 +33,7 @@ function Movie({ title, _date, overview, poster, backdrop, vote, genres }) {
               : title.slice(0, 9) + 'ㅤ'} */}
           </h3>
           <div className='movie__year'>{date[0]}</div>
-          <div className='movie__star'>
+          <div className='movie__vote'>
             <i className='fa fa-star' />
             {vote}
           </div>

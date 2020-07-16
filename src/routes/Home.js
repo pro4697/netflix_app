@@ -1,16 +1,21 @@
 import React from 'react';
+import Flicking from '@egjs/react-flicking';
+import { Fade, AutoPlay } from '@egjs/flicking-plugins';
 import Movie from '../components/Movie';
-import './Home.css';
+import Panel from '../components/Panel';
+import Section from '../components/Section';
 import { movieApi } from '../api';
 import 'font-awesome/css/font-awesome.min.css';
-import Section from '../components/Section';
+import './Home.css';
 
+const plugins = [new Fade(), new AutoPlay(2600, 'NEXT')];
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
 /*
   1. 장르 정보를 외부 파일의 함수로 빼서 저장하여 movie컴포넌트에서 그 함수를 호출한다.
   2. 일단 UI조정후 클릭시 상세정보 나오게, 배경화면은 backdrop_path로 접근
   3. 폰트도 포트폴레오 사이트에 적용한 것 가져오기
 */
+
 class Home extends React.Component {
   state = {
     isLoading: true,
@@ -37,75 +42,74 @@ class Home extends React.Component {
 
   render() {
     const { isLoading, nowPlaying, topRated, upComing } = this.state;
-    return (
-      <section className='container'>
-        {isLoading ? (
-          <div className='loader'>
-            <span className='loader__text'>
-              <i className='fa fa-spinner fa-spin'></i>
-            </span>
-          </div>
-        ) : (
-          <>
-            {nowPlaying && nowPlaying.length > 0 && (
-              <Section title='Now Playing'>
-                <div className='movies'>
-                  {nowPlaying.map((movie) => (
-                    <Movie
-                      key={movie.id}
-                      title={movie.title}
-                      _date={movie.release_date}
-                      overview={movie.overview}
-                      poster={IMG_PATH + movie.poster_path}
-                      backdrop={IMG_PATH + movie.backdrop_path}
-                      vote={movie.vote_average}
-                      genres={movie.genre_ids}
-                    />
-                  ))}
-                </div>
-              </Section>
-            )}
-            {topRated && topRated.length > 0 && (
-              <Section title='Top Rated'>
-                <div className='movies'>
-                  {topRated.map((movie) => (
-                    <Movie
-                      key={movie.id}
-                      title={movie.title}
-                      _date={movie.release_date}
-                      overview={movie.overview}
-                      poster={IMG_PATH + movie.poster_path}
-                      backdrop={IMG_PATH + movie.backdrop_path}
-                      vote={movie.vote_average}
-                      genres={movie.genre_ids}
-                    />
-                  ))}
-                </div>
-              </Section>
-            )}
-            {upComing && upComing.length > 0 && (
-              <Section title='Up Coming'>
-                <div className='movies'>
-                  {upComing.map((movie) => (
-                    <Movie
-                      key={movie.id}
-                      title={movie.title}
-                      _date={movie.release_date}
-                      overview={movie.overview}
-                      poster={IMG_PATH + movie.poster_path}
-                      backdrop={IMG_PATH + movie.backdrop_path}
-                      vote={movie.vote_average}
-                      genres={movie.genre_ids}
-                    />
-                  ))}
-                </div>
-              </Section>
-            )}
-          </>
+    return isLoading ? (
+      <div className='loader'>
+        <span className='loader__text'>
+          <i className='fa fa-spinner fa-spin'></i>
+        </span>
+      </div>
+    ) : (
+      <>
+        {nowPlaying && nowPlaying.length > 0 && (
+          <Flicking
+            className='flicking'
+            circular={true}
+            zIndex={0}
+            duration={400}
+            collectStatistics={false}
+            plugins={plugins}
+          >
+            {Panel_render(nowPlaying)}
+          </Flicking>
         )}
-      </section>
+        {nowPlaying && nowPlaying.length > 0 && (
+          <Section title='Now Playing'>
+            <div className='movies'>{Movie_render(nowPlaying)}</div>
+          </Section>
+        )}
+        {topRated && topRated.length > 0 && (
+          <Section title='Top Rated'>
+            <div className='movies'>{Movie_render(topRated)}</div>
+          </Section>
+        )}
+        {upComing && upComing.length > 0 && (
+          <Section title='Up Coming'>
+            <div className='movies'>{Movie_render(upComing)}</div>
+          </Section>
+        )}
+      </>
     );
   }
+}
+
+function Movie_render(props) {
+  return props.map((movie) => (
+    <Movie
+      key={movie.id}
+      title={movie.title}
+      _date={movie.release_date}
+      overview={movie.overview}
+      poster={IMG_PATH + movie.poster_path}
+      backdrop={IMG_PATH + movie.backdrop_path}
+      vote={movie.vote_average}
+      genres={movie.genre_ids}
+    />
+  ));
+}
+
+function Panel_render(props) {
+  return props.map((movie) => (
+    <Panel
+      key={movie.id}
+      title={movie.title}
+      _date={movie.release_date}
+      overview={movie.overview}
+      poster={IMG_PATH + movie.poster_path}
+      backdrop={IMG_PATH + movie.backdrop_path}
+      vote={movie.vote_average}
+      genres={movie.genre_ids}
+    />
+  ));
 }
 
 export default Home;
