@@ -35,19 +35,12 @@
   width: 100%;
 }
 
-.fa {
+.nav__icon {
   font-size: 20px;
 }
 
 .nav__top {
   padding-top: 5px;
-}
-
-@media screen and (max-width: 1090px) {
-  .nav_top,
-  .nav__bottom {
-    z-index: 1;
-  }
 }
 
 .nav__top a,

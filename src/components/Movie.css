@@ -86,9 +86,10 @@
   font-size: 11px;
 }
 
-.fa.fa-star {
+.movie__star {
   color: #ffc83d;
-  font-size: 10px;
+  font-size: 8px;
+  margin-bottom: 1px;
   margin-right: 5px;
 }
 

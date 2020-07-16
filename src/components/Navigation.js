@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navigation.css';
-import Logo from './netflix_logo.png';
-import 'font-awesome/css/font-awesome.min.css';
+import Logo from '../imgs/netflix_logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilm, faTv, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function Navigation() {
   return (
@@ -18,17 +19,17 @@ function Navigation() {
       <div className='nav__bottom'>
         <div className='nav__bottom__content'>
           <Link to='/'>
-            <i className='fa fa-film'></i>
+            <FontAwesomeIcon icon={faFilm} className='nav__icon' />
           </Link>
         </div>
         <div className='nav__bottom__content'>
           <Link to='/about'>
-            <i className='fa fa-tv'></i>
+            <FontAwesomeIcon icon={faTv} className='nav__icon' />
           </Link>
         </div>
         <div className='nav__bottom__content'>
           <Link to='/about'>
-            <i className='fa fa-search'></i>
+            <FontAwesomeIcon icon={faSearch} className='nav__icon' />
           </Link>
         </div>
       </div>

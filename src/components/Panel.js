@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import 'font-awesome/css/font-awesome.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import './Panel.css';
 
 function Panel({ title, _date, overview, poster, backdrop, vote, genres }) {
@@ -20,7 +21,7 @@ function Panel({ title, _date, overview, poster, backdrop, vote, genres }) {
         <div className='flicking__data'>
           <div className='flicking__title'>{title.slice(0, 40)}</div>
           <div className='flicking__vote'>
-            <i className='fa fa-star' />
+            <FontAwesomeIcon icon={faStar} className='panel__star' />
             <span> {vote} / 10</span>
           </div>
           <div className='flicking__overview'>{overview.slice(0, 50)}...</div>

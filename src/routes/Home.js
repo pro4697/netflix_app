@@ -4,9 +4,9 @@ import { Fade, AutoPlay } from '@egjs/flicking-plugins';
 import Movie from '../components/Movie';
 import Panel from '../components/Panel';
 import Section from '../components/Section';
-import { movieApi } from '../api';
-import 'font-awesome/css/font-awesome.min.css';
+import { movieApi } from '../Api';
 import './Home.css';
+import { motion } from 'framer-motion';
 
 const plugins = [new Fade(), new AutoPlay(2600, 'NEXT')];
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
@@ -49,7 +49,11 @@ class Home extends React.Component {
         </span>
       </div>
     ) : (
-      <>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         {nowPlaying && nowPlaying.length > 0 && (
           <Flicking
             className='flicking'
@@ -77,7 +81,7 @@ class Home extends React.Component {
             <div className='movies'>{Movie_render(upComing)}</div>
           </Section>
         )}
-      </>
+      </motion.div>
     );
   }
 }

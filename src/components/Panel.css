@@ -78,6 +78,13 @@
   text-align: center;
 }
 
+.panel__star {
+  color: #ffc83d;
+  font-size: 10px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+}
+
 @media screen and (max-width: 768px) {
   .flicking__container {
     padding-left: calc(7%);

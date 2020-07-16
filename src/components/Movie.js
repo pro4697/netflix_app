@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Movie.css';
 import { Link } from 'react-router-dom';
-import 'font-awesome/css/font-awesome.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 function Movie({ title, _date, overview, poster, backdrop, vote, genres }) {
   const date = _date.split('-');
@@ -34,7 +35,7 @@ function Movie({ title, _date, overview, poster, backdrop, vote, genres }) {
           </h3>
           <div className='movie__year'>{date[0]}</div>
           <div className='movie__vote'>
-            <i className='fa fa-star' />
+            <FontAwesomeIcon icon={faStar} className='movie__star' />
             {vote}
           </div>
         </div>
