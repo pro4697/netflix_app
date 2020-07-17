@@ -12,7 +12,7 @@ class Detail extends React.Component {
   };
 
   async componentDidMount() {
-    const { location, history } = this.props;
+    const { location } = this.props;
     if (location.state === undefined) {
       document.location.href = '/';
       // history.push('/');

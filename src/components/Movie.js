@@ -43,7 +43,6 @@ Movie.propTypes = {
   poster: PropTypes.string.isRequired,
   backdrop: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Movie;

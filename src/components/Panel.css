@@ -91,4 +91,18 @@
     padding-left: calc(7%);
     height: 280px;
   }
+
+  .panel__button {
+    text-decoration: none;
+    margin-right: 0;
+    display: inline-block;
+    margin-top: 12px;
+    background-color: #e74c3c;
+    color: white;
+    padding: 7px 0;
+    width: 85px;
+    font-size: 12px;
+    border-radius: 3px;
+    text-align: center;
+  }
 }

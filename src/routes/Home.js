@@ -7,7 +7,6 @@ import Section from '../components/Section';
 import { movieApi } from '../Api';
 import './Home.css';
 import { motion } from 'framer-motion';
-import { faMapSigns } from '@fortawesome/free-solid-svg-icons';
 
 const plugins = [new Fade(), new AutoPlay(2600, 'NEXT')];
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
@@ -57,7 +56,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { isLoading, nowPlaying, topRated, upComing, genres } = this.state;
+    const { isLoading, nowPlaying, topRated, upComing } = this.state;
     return isLoading ? (
       <div className='loader'>
         <span className='loader__text'>
