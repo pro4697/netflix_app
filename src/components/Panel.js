@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import './Panel.css';
 
-function Panel({ title, _date, overview, poster, backdrop, vote, genres }) {
+function Panel({ id, title, _date, overview, poster, backdrop, vote }) {
   const date = _date.split('-');
   return (
     <div className='panel__container'>
@@ -28,7 +28,7 @@ function Panel({ title, _date, overview, poster, backdrop, vote, genres }) {
           <Link
             to={{
               pathname: '/movie-detail',
-              state: { title, date, overview, poster, backdrop, vote, genres },
+              state: { id, title, date, overview, poster, backdrop, vote },
             }}
           >
             <div className='panel__button'>View Detail</div>
@@ -40,13 +40,14 @@ function Panel({ title, _date, overview, poster, backdrop, vote, genres }) {
 }
 
 Panel.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   _date: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
   backdrop: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.number).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Panel;

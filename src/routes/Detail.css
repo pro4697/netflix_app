@@ -96,6 +96,8 @@
   font-size: 15px;
   font-weight: 100;
   letter-spacing: 1px;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 .star {
@@ -103,6 +105,15 @@
   font-size: 13px;
   font-weight: 100;
   letter-spacing: 1px;
+}
+
+.genres {
+  color: lightgray;
+  font-size: 15px;
+  font-weight: 100;
+  letter-spacing: 1px;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 .detail__description {
@@ -165,8 +176,8 @@
   .year {
     font-size: 14px;
     color: darkgray;
+    margin-left: 0px;
     margin-top: 15px;
-    margin-bottom: 10px;
     letter-spacing: 2px;
   }
 
@@ -175,6 +186,14 @@
     color: lightgray;
     margin-top: 15px;
     margin-bottom: 5px;
+    letter-spacing: 1px;
+  }
+
+  .genres {
+    margin: 0;
+    color: lightgray;
+    font-size: 12px;
+    font-weight: 100;
     letter-spacing: 1px;
   }
 

@@ -13,24 +13,21 @@ export const movieApi = {
     axios.get(
       `${BASE_URL}/movie/now_playing?api_key=${API_KEY}&language=ko-KR`
     ),
+  nowPlayingUS: () =>
+    axios.get(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}`),
+
   upComing: () =>
     axios.get(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=ko-KR`),
+  upComingUS: () => axios.get(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}`),
+
   popular: () =>
     axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`),
+  popularUS: () => axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}`),
+
   topRated: () =>
     axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`),
-  getGenre: () =>
-    axios.get(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=ko-KR`),
-  // movieDetail: id =>
-  //   api.get(`movie/${id}`, {
-  //     params: {
-  //       append_to_response: "videos"
-  //     }
-  //   }),
-  // search: term =>
-  //   api.get("search/movie", {
-  //     params: {
-  //       query: encodeURIComponent(term)
-  //     }
-  //   })
+  topRatedUS: () => axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}`),
+
+  getDetail: (id) =>
+    axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`),
 };

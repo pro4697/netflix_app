@@ -7,6 +7,7 @@ import Section from '../components/Section';
 import { movieApi } from '../Api';
 import './Home.css';
 import { motion } from 'framer-motion';
+import { faMapSigns } from '@fortawesome/free-solid-svg-icons';
 
 const plugins = [new Fade(), new AutoPlay(2600, 'NEXT')];
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
@@ -22,26 +23,41 @@ class Home extends React.Component {
     nowPlaying: [],
     topRated: [],
     upComing: [],
-    // genres: [],
   };
 
   async componentDidMount() {
     const {
       data: { results: nowPlaying },
     } = await movieApi.nowPlaying();
+
+    const {
+      data: { results: overview1 },
+    } = await movieApi.nowPlayingUS();
+    overview_mapping(nowPlaying, overview1);
+
     const {
       data: { results: topRated },
     } = await movieApi.topRated();
+
+    const {
+      data: { results: overview2 },
+    } = await movieApi.topRatedUS();
+    overview_mapping(topRated, overview2);
+
     const {
       data: { results: upComing },
     } = await movieApi.upComing();
 
-    // 한글에 설명이 없는것도 있음. 영어버전과 같이받아와서 overview만 추출하여 따로 넘겨줘야 할듯
+    const {
+      data: { results: overview3 },
+    } = await movieApi.upComingUS();
+    overview_mapping(upComing, overview3);
+
     this.setState({ nowPlaying, topRated, upComing, isLoading: false });
   }
 
   render() {
-    const { isLoading, nowPlaying, topRated, upComing } = this.state;
+    const { isLoading, nowPlaying, topRated, upComing, genres } = this.state;
     return isLoading ? (
       <div className='loader'>
         <span className='loader__text'>
@@ -91,13 +107,13 @@ function Movie_render(props) {
   return props.map((movie) => (
     <Movie
       key={movie.id}
+      id={movie.id}
       title={movie.title}
       _date={movie.release_date}
       overview={movie.overview}
       poster={IMG_PATH + movie.poster_path}
       backdrop={IMG_PATH + movie.backdrop_path}
       vote={movie.vote_average}
-      genres={movie.genre_ids}
     />
   ));
 }
@@ -106,15 +122,20 @@ function Panel_render(props) {
   return props.map((movie) => (
     <Panel
       key={movie.id}
+      id={movie.id}
       title={movie.title}
       _date={movie.release_date}
       overview={movie.overview}
       poster={IMG_PATH + movie.poster_path}
       backdrop={IMG_PATH + movie.backdrop_path}
       vote={movie.vote_average}
-      genres={movie.genre_ids}
     />
   ));
+}
+
+function overview_mapping(movie, overview) {
+  for (var i = 0; i < movie.length; i++)
+    if (movie[i].overview.length < 10) movie[i].overview = overview[i].overview;
 }
 
 export default Home;
