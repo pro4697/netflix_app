@@ -5,17 +5,13 @@ import Movie from '../components/Movie';
 import Panel from '../components/Panel';
 import Section from '../components/Section';
 import NavBottom from '../components/NavBottom';
+import Loader from '../components/Loader';
 import { movieApi } from '../Api';
 import './Home.css';
 import { motion } from 'framer-motion';
 
 const plugins = [new Fade(), new AutoPlay(2600, 'NEXT')];
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
-/*
-  1. 장르 정보를 외부 파일의 함수로 빼서 저장하여 movie컴포넌트에서 그 함수를 호출한다.
-  2. 일단 UI조정후 클릭시 상세정보 나오게, 배경화면은 backdrop_path로 접근
-  3. 폰트도 포트폴레오 사이트에 적용한 것 가져오기
-*/
 
 class Home extends React.Component {
   state = {
@@ -59,11 +55,7 @@ class Home extends React.Component {
   render() {
     const { isLoading, nowPlaying, topRated, upComing } = this.state;
     return isLoading ? (
-      <div className='loader'>
-        <span className='loader__text'>
-          <i className='fa fa-spinner fa-spin'></i>
-        </span>
-      </div>
+      <Loader />
     ) : (
       <motion.div
         className='container'
@@ -92,7 +84,6 @@ class Home extends React.Component {
         {upComing && upComing.length > 0 && (
           <Section title='UpComing'>{Movie_render(upComing)}</Section>
         )}
-
         <NavBottom />
       </motion.div>
     );

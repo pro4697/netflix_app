@@ -9,15 +9,19 @@ function Panel({ id, title, _date, overview, poster, backdrop, vote }) {
   const date = _date.split('-');
   return (
     <div className='panel__container'>
-      <div
-        className='panel__backdrop'
-        style={{ backgroundImage: `url(${backdrop})` }}
-      />
-      <div className='panel__content'>
+      {backdrop !== 'https://image.tmdb.org/t/p/w500null' ? (
         <div
-          className='panel__poster'
-          style={{ backgroundImage: `url(${poster})` }}
+          className='panel__backdrop'
+          style={{ backgroundImage: `url(${backdrop})` }}
         />
+      ) : null}
+      <div className='panel__content'>
+        {poster !== 'https://image.tmdb.org/t/p/w500null' ? (
+          <div
+            className='panel__poster'
+            style={{ backgroundImage: `url(${poster})` }}
+          />
+        ) : null}
         <div className='panel__data'>
           <div className='panel__title'>{title.slice(0, 40)}</div>
           <div className='panel__vote'>

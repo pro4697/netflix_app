@@ -48,16 +48,23 @@ class Detail extends React.Component {
                 <FontAwesomeIcon icon={faArrowLeft} className='nav__backbtn' />
               </div>
             </Link>
-            <div
-              className='detail__backdrop'
-              style={{ backgroundImage: `url(${location.state.backdrop})` }}
-            />
+            {location.state.backdrop !==
+            'https://image.tmdb.org/t/p/w500null' ? (
+              <div
+                className='detail__backdrop'
+                style={{ backgroundImage: `url(${location.state.backdrop})` }}
+              />
+            ) : null}
+
             <br />
             <div className='detail__top-box'>
-              <div
-                className='detail__poster'
-                style={{ backgroundImage: `url(${location.state.poster})` }}
-              />
+              {location.state.poster !==
+              'https://image.tmdb.org/t/p/w500null' ? (
+                <div
+                  className='detail__poster'
+                  style={{ backgroundImage: `url(${location.state.poster})` }}
+                />
+              ) : null}
               <div className='detail__info'>
                 <div className='detail__title'>{location.state.title}</div>
                 <div className='detail__title star'>
@@ -73,9 +80,6 @@ class Detail extends React.Component {
                     {over.map((overv) => (
                       <p>{overv}</p> // 문단별 줄바꿈
                     ))}
-                    <br />
-                    <br />
-                    <br />
                   </div>
                 </div>
               </div>

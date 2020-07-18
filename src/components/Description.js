@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Container = styled.div`
-  display: inline-block;
+  display: block;
   margin-top: 25px;
   width: 100%;
 `;
@@ -15,6 +15,7 @@ const Title = styled.span`
   margin: 25px;
   font-weight: 600;
   color: white;
+  border-bottom: 1px solid grey;
 `;
 
 const Body = styled.div`

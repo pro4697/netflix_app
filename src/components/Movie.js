@@ -18,10 +18,12 @@ function Movie({ id, title, _date, overview, poster, backdrop, vote }) {
           state: { id, title, date, overview, poster, backdrop, vote },
         }}
       >
-        <div
-          className='movie__poster'
-          style={{ backgroundImage: `url(${poster})` }}
-        />
+        {poster !== 'https://image.tmdb.org/t/p/w500null' ? (
+          <div
+            className='movie__poster'
+            style={{ backgroundImage: `url(${poster})` }}
+          />
+        ) : null}
         <div className='movie__data'>
           <h3 className='movie__title'>{title}</h3>
           <div className='movie__year'>{date[0]}</div>
