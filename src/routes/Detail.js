@@ -13,7 +13,7 @@ const page = {
   },
   out: {
     opacity: 0,
-    y: '3vh',
+    y: '10vh',
   },
 };
 
