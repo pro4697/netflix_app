@@ -4,6 +4,7 @@ import { Fade, AutoPlay } from '@egjs/flicking-plugins';
 import Movie from '../components/Movie';
 import Panel from '../components/Panel';
 import Section from '../components/Section';
+import NavBottom from '../components/NavBottom';
 import { movieApi } from '../Api';
 import './Home.css';
 import { motion } from 'framer-motion';
@@ -32,7 +33,7 @@ class Home extends React.Component {
     const {
       data: { results: overview1 },
     } = await movieApi.nowPlayingUS();
-    overview_mapping(nowPlaying, overview1);
+    overview_replace(nowPlaying, overview1);
 
     const {
       data: { results: topRated },
@@ -41,7 +42,7 @@ class Home extends React.Component {
     const {
       data: { results: overview2 },
     } = await movieApi.topRatedUS();
-    overview_mapping(topRated, overview2);
+    overview_replace(topRated, overview2);
 
     const {
       data: { results: upComing },
@@ -50,7 +51,7 @@ class Home extends React.Component {
     const {
       data: { results: overview3 },
     } = await movieApi.upComingUS();
-    overview_mapping(upComing, overview3);
+    overview_replace(upComing, overview3);
 
     this.setState({ nowPlaying, topRated, upComing, isLoading: false });
   }
@@ -83,20 +84,16 @@ class Home extends React.Component {
           </Flicking>
         )}
         {nowPlaying && nowPlaying.length > 0 && (
-          <Section title='Now Playing'>
-            <div className='movies'>{Movie_render(nowPlaying)}</div>
-          </Section>
+          <Section title='Now Playing'>{Movie_render(nowPlaying)}</Section>
         )}
         {topRated && topRated.length > 0 && (
-          <Section title='Top Rated'>
-            <div className='movies'>{Movie_render(topRated)}</div>
-          </Section>
+          <Section title='Top Rated'>{Movie_render(topRated)}</Section>
         )}
         {upComing && upComing.length > 0 && (
-          <Section title='UpComing'>
-            <div className='movies'>{Movie_render(upComing)}</div>
-          </Section>
+          <Section title='UpComing'>{Movie_render(upComing)}</Section>
         )}
+
+        <NavBottom />
       </motion.div>
     );
   }
@@ -132,7 +129,7 @@ function Panel_render(props) {
   ));
 }
 
-function overview_mapping(movie, overview) {
+function overview_replace(movie, overview) {
   for (var i = 0; i < movie.length; i++)
     if (movie[i].overview.length < 10) movie[i].overview = overview[i].overview;
 }

@@ -1,4 +1,4 @@
-.movies .movie {
+.movie {
   position: relative;
   display: inline-block;
   width: 100px;
@@ -15,7 +15,7 @@
   transition: all 300ms ease-out;
 }
 
-.movies .movie a {
+.movie a {
   /* display: grid; 영화정보 옆으로 표시
   grid-template-columns: minmax(150px, 1fr) 2fr;
   grid-gap: 20px; */
@@ -94,9 +94,9 @@
   margin-bottom: 1px;
   margin-right: 5px;
 }
-
+/* 
 @media screen and (max-width: 768px) {
-  .movies .movie {
+  .movie {
     margin-left: 20px;
   }
-}
+} */

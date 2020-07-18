@@ -19,7 +19,7 @@
   margin-top: 50px;
 }
 
-.movies {
+/* .movies {
   display: grid;
   grid-template-columns: repeat(auto-fill, 100px);
   grid-gap: 35px;
@@ -40,13 +40,13 @@
     margin-left: 0;
     white-space: nowrap;
     overflow-x: auto;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
   .movies::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
+    display: none;
   }
-}
+} */
 
 body {
   margin: 0;
