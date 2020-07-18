@@ -6,6 +6,17 @@ import { faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
 import { movieApi } from '../Api';
 import './Detail.css';
 
+const page = {
+  in: {
+    opacity: 1,
+    y: 0,
+  },
+  out: {
+    opacity: 0,
+    y: '3vh',
+  },
+};
+
 class Detail extends React.Component {
   state = {
     genres: [],
@@ -33,9 +44,13 @@ class Detail extends React.Component {
 
       return (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          // initial={{ opacity: 0 }}
+          // animate={{ opacity: 1 }}
+          // exit={{ opacity: 0 }}
+          initial='out'
+          animate='in'
+          exit='out'
+          variants={page}
         >
           <div className='detail'>
             <Link
