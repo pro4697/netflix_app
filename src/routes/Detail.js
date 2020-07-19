@@ -29,7 +29,7 @@ class Detail extends React.Component {
   async componentDidMount() {
     const { location } = this.props;
     if (location.state === undefined) {
-      document.location.href = '/';
+      document.location.href = '/netfliex_app';
       // history.push('/');
     }
 
@@ -61,61 +61,63 @@ class Detail extends React.Component {
           animate='in'
           exit='out'
           variants={page}
+          className='detail'
         >
-          <div className='detail'>
-            <Link
-              to=''
-              onClick={() => {
-                history.goBack();
-              }}
-            >
-              <div className='nav__container'>
-                <FontAwesomeIcon icon={faArrowLeft} className='nav__backbtn' />
-              </div>
-            </Link>
-            {location.state.backdrop !==
-            'https://image.tmdb.org/t/p/w500null' ? (
+          <Link
+            to=''
+            onClick={() => {
+              history.goBack();
+            }}
+          >
+            <div className='nav__container'>
+              <FontAwesomeIcon icon={faArrowLeft} className='nav__backbtn' />
+            </div>
+          </Link>
+          {location.state.backdrop !== 'https://image.tmdb.org/t/p/w500null' ? (
+            <div
+              className='detail__backdrop'
+              style={{ backgroundImage: `url(${location.state.backdrop})` }}
+            />
+          ) : null}
+
+          <br />
+          <div className='detail__container'>
+            {location.state.poster !== 'https://image.tmdb.org/t/p/w500null' ? (
               <div
-                className='detail__backdrop'
-                style={{ backgroundImage: `url(${location.state.backdrop})` }}
+                className='detail__poster'
+                style={{ backgroundImage: `url(${location.state.poster})` }}
               />
             ) : null}
-
-            <br />
-            <div className='detail__container'>
-              {location.state.poster !==
-              'https://image.tmdb.org/t/p/w500null' ? (
-                <div
-                  className='detail__poster'
-                  style={{ backgroundImage: `url(${location.state.poster})` }}
-                />
-              ) : null}
-              <div className='detail__info'>
-                <div className='detail__title'>{location.state.title}</div>
-                <div className='detail__title star'>
-                  <FontAwesomeIcon icon={faStar} className='panel__star' />
-                  <span> {location.state.vote} / 10</span>
-                </div>
-                <div className='detail__description'>
-                  <Description title='개봉'>{`${location.state.date[0]}. ${location.state.date[1]}. ${location.state.date[2]}.`}</Description>
-                  <Description title='장르'>
-                    {genres.map((g) => `${g.name} `)}
-                  </Description>
-                  <Description title='시간'>{runtime}분</Description>
-                  <Description title='줄거리'>
-                    {over.map((overv) => (
-                      <p>{overv}</p>
-                    ))}
-                  </Description>
-                  <Description title='추천 영상'>
-                    {results.map((video) => (
-                      <a href={`https://www.youtube.com/watch?v=${video.key}`}>
-                        <FontAwesomeIcon icon={faYoutube} className='youtube' />{' '}
-                        <a class='detail__videoName'>{video.name}</a>
-                      </a>
-                    ))}
-                  </Description>
-                </div>
+            <div className='detail__info'>
+              <div className='detail__title'>{location.state.title}</div>
+              <div className='detail__title star'>
+                <FontAwesomeIcon icon={faStar} className='panel__star' />
+                <span> {location.state.vote} / 10</span>
+              </div>
+              <div className='detail__description'>
+                <Description title='개봉'>{`${location.state.date[0]}. ${location.state.date[1]}. ${location.state.date[2]}.`}</Description>
+                <Description title='장르'>
+                  {genres.map((g) => `${g.name} `)}
+                </Description>
+                <Description title='시간'>{runtime}분</Description>
+                <Description title='줄거리'>
+                  {over.map((overv) => (
+                    <p>{overv}</p>
+                  ))}
+                </Description>
+                <Description title='추천 영상'>
+                  {results.map((video) => (
+                    <a
+                      href={`https://www.youtube.com/watch?v=${video.key}`}
+                      className='detail__videoContainer'
+                    >
+                      <FontAwesomeIcon icon={faYoutube} className='youtube' />{' '}
+                      <div className='detail__videoName'>{video.name}</div>
+                    </a>
+                  ))}
+                </Description>
+                <br />
+                <br />
               </div>
             </div>
           </div>
