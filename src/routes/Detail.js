@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { movieApi } from '../Api';
+import Description from '../components/Description';
 import './Detail.css';
 
 const page = {
@@ -20,6 +22,8 @@ const page = {
 class Detail extends React.Component {
   state = {
     genres: [],
+    runtime: null,
+    results: [],
   };
 
   async componentDidMount() {
@@ -30,14 +34,20 @@ class Detail extends React.Component {
     }
 
     const {
-      data: { genres },
+      data: { genres, runtime },
     } = await movieApi.getDetail(location.state.id);
-    this.setState({ genres });
+
+    const {
+      data: { results },
+    } = await movieApi.getVideos(location.state.id);
+    console.log(results);
+    this.setState({ genres, runtime, results });
   }
 
   render() {
     const { location, history } = this.props;
-    const { genres } = this.state;
+    const { genres, runtime, results } = this.state;
+
     if (location.state) {
       const over = location.state.overview.split('. '); // 문단별로 자르고
       for (var i = 0; i < over.length - 1; i++) over[i] += '.'; // 문단끝에 마침표를 찍는다
@@ -72,7 +82,7 @@ class Detail extends React.Component {
             ) : null}
 
             <br />
-            <div className='detail__top-box'>
+            <div className='detail__container'>
               {location.state.poster !==
               'https://image.tmdb.org/t/p/w500null' ? (
                 <div
@@ -87,15 +97,24 @@ class Detail extends React.Component {
                   <span> {location.state.vote} / 10</span>
                 </div>
                 <div className='detail__description'>
-                  <div className='detail__title year'>{`${location.state.date[0]}. ${location.state.date[1]}. ${location.state.date[2]}`}</div>
-                  <div className='detail__title genres'>
+                  <Description title='개봉'>{`${location.state.date[0]}. ${location.state.date[1]}. ${location.state.date[2]}.`}</Description>
+                  <Description title='장르'>
                     {genres.map((g) => `${g.name} `)}
-                  </div>
-                  <div className='detail__overview'>
+                  </Description>
+                  <Description title='시간'>{runtime}분</Description>
+                  <Description title='줄거리'>
                     {over.map((overv) => (
-                      <p>{overv}</p> // 문단별 줄바꿈
+                      <p>{overv}</p>
                     ))}
-                  </div>
+                  </Description>
+                  <Description title='추천 영상'>
+                    {results.map((video) => (
+                      <a href={`https://www.youtube.com/watch?v=${video.key}`}>
+                        <FontAwesomeIcon icon={faYoutube} className='youtube' />{' '}
+                        <a class='detail__videoName'>{video.name}</a>
+                      </a>
+                    ))}
+                  </Description>
                 </div>
               </div>
             </div>

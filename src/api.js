@@ -30,4 +30,9 @@ export const movieApi = {
 
   getDetail: (id) =>
     axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`),
+
+  getVideos: (id) =>
+    axios.get(
+      `${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}&append_to_response=videos`
+    ),
 };
