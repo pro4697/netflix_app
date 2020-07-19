@@ -29,7 +29,7 @@ class Detail extends React.Component {
   async componentDidMount() {
     const { location } = this.props;
     if (location.state === undefined) {
-      document.location.href = '/netfliex_app';
+      document.location.href = '/netflix_app';
       // history.push('/');
     }
 
