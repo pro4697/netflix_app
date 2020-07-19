@@ -15,7 +15,16 @@ function Movie({ id, title, date, overview, poster, backdrop, vote, isTv }) {
       <Link
         to={{
           pathname: '/movie-detail',
-          state: { id, title, date, overview, poster, backdrop, vote, isTv },
+          state: {
+            id,
+            title,
+            date,
+            overview,
+            poster,
+            backdrop,
+            vote,
+            isTv,
+          },
         }}
       >
         {poster !== 'https://image.tmdb.org/t/p/w500null' ? (

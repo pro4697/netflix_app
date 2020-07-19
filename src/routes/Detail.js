@@ -34,8 +34,7 @@ class Detail extends React.Component {
   async componentDidMount() {
     const { location } = this.props;
     if (location.state === undefined) {
-      document.location.href = '/netflix_app';
-      // history.push('/');
+      window.location.href = '/netflix_app';
     }
 
     if (!location.state.isTv) {
@@ -74,6 +73,7 @@ class Detail extends React.Component {
   }
 
   render() {
+    window.scrollTo(0, 0);
     const { location, history } = this.props;
     const {
       genres,
@@ -138,7 +138,9 @@ class Detail extends React.Component {
                   </Description>
                 ) : null}
                 <Description title='장르'>
-                  {genres.map((g) => `${g.name} `)}
+                  {genres.map((g, idx) =>
+                    idx + 1 === genres.length ? g.name : `${g.name}•`
+                  )}
                 </Description>
                 <Description title='시간'>{runtime}분</Description>
                 {isTv ? (
@@ -147,18 +149,19 @@ class Detail extends React.Component {
                   </Description>
                 ) : null}
                 <Description title='줄거리'>
-                  {over.map((overv) => (
-                    <p>{overv}</p>
+                  {over.map((overv, idx) => (
+                    <p key={idx}>{overv}</p>
                   ))}
                 </Description>
                 {results.length > 0 ? (
-                  <Description title='추천 영상'>
-                    {results.map((video) => (
+                  <Description title='관련 영상'>
+                    {results.map((video, idx) => (
                       <a
                         href={`https://www.youtube.com/watch?v=${video.key}`}
                         className='detail__videoContainer'
+                        key={idx}
                       >
-                        <FontAwesomeIcon icon={faYoutube} className='youtube' />{' '}
+                        <FontAwesomeIcon icon={faYoutube} className='youtube' />
                         <div className='detail__videoName'>{video.name}</div>
                       </a>
                     ))}

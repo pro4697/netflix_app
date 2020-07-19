@@ -24,7 +24,7 @@ const Body = styled.div`
   grid-template-columns: repeat(auto-fill, 100px);
   grid-gap: 35px;
   padding-top: 20px;
-  padding-right: 80px;
+  padding-right: 30px;
   margin-bottom: 40px;
   margin-left: 5px;
   width: 100%;
