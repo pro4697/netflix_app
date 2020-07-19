@@ -1,8 +1,9 @@
 import React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import About from './routes/About';
+import Tv from './routes/Tv';
 import Home from './routes/Home';
+import Search from './routes/Search';
 import NavTop from './components/NavTop';
 import Detail from './routes/Detail';
 import './App.css';
@@ -14,7 +15,8 @@ function App() {
       <AnimatePresence>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/about' component={About} />
+          <Route path='/tv' component={Tv} />
+          <Route path='/search' component={Search} />
           <Route path='/movie-detail' component={Detail} />
         </Switch>
       </AnimatePresence>

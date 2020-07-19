@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { movieApi } from '../Api';
+import { movieApi, tvApi } from '../Api';
+import { utils } from '../utils';
 import Description from '../components/Description';
 import './Detail.css';
 
@@ -21,9 +22,13 @@ const page = {
 
 class Detail extends React.Component {
   state = {
+    isTv: false,
     genres: [],
-    runtime: null,
     results: [],
+    runtime: null,
+    last_date: null,
+    episodes: null,
+    seasons: null,
   };
 
   async componentDidMount() {
@@ -33,20 +38,52 @@ class Detail extends React.Component {
       // history.push('/');
     }
 
-    const {
-      data: { genres, runtime },
-    } = await movieApi.getDetail(location.state.id);
+    if (!location.state.isTv) {
+      const {
+        data: { genres, runtime },
+      } = await movieApi.getDetail(location.state.id);
 
-    const {
-      data: { results },
-    } = await movieApi.getVideos(location.state.id);
-    console.log(results);
-    this.setState({ genres, runtime, results });
+      const {
+        data: { results },
+      } = await movieApi.getVideos(location.state.id);
+      this.setState({ genres, runtime, results, isTv: location.state.isTv });
+    } else {
+      const {
+        data: {
+          genres,
+          episode_run_time: runtime,
+          last_air_date: last_date,
+          number_of_episodes: episodes,
+          number_of_seasons: seasons,
+        },
+      } = await tvApi.getDetail(location.state.id);
+
+      const {
+        data: { results },
+      } = await tvApi.getVideos(location.state.id);
+      this.setState({
+        genres,
+        runtime,
+        last_date,
+        episodes,
+        seasons,
+        results,
+        isTv: location.state.isTv,
+      });
+    }
   }
 
   render() {
     const { location, history } = this.props;
-    const { genres, runtime, results } = this.state;
+    const {
+      genres,
+      runtime,
+      last_date,
+      results,
+      episodes,
+      seasons,
+      isTv,
+    } = this.state;
 
     if (location.state) {
       const over = location.state.overview.split('. '); // 문단별로 자르고
@@ -54,9 +91,6 @@ class Detail extends React.Component {
 
       return (
         <motion.div
-          // initial={{ opacity: 0 }}
-          // animate={{ opacity: 1 }}
-          // exit={{ opacity: 0 }}
           initial='out'
           animate='in'
           exit='out'
@@ -95,27 +129,41 @@ class Detail extends React.Component {
                 <span> {location.state.vote} / 10</span>
               </div>
               <div className='detail__description'>
-                <Description title='개봉'>{`${location.state.date[0]}. ${location.state.date[1]}. ${location.state.date[2]}.`}</Description>
+                <Description title={isTv ? '첫 방영일자' : '개봉'}>
+                  {utils.format_date(location.state.date)}
+                </Description>
+                {isTv ? (
+                  <Description title='최신 방영일자'>
+                    {utils.format_date(last_date)}
+                  </Description>
+                ) : null}
                 <Description title='장르'>
                   {genres.map((g) => `${g.name} `)}
                 </Description>
                 <Description title='시간'>{runtime}분</Description>
+                {isTv ? (
+                  <Description title='에피소드 / 시즌'>
+                    {episodes} / {seasons}
+                  </Description>
+                ) : null}
                 <Description title='줄거리'>
                   {over.map((overv) => (
                     <p>{overv}</p>
                   ))}
                 </Description>
-                <Description title='추천 영상'>
-                  {results.map((video) => (
-                    <a
-                      href={`https://www.youtube.com/watch?v=${video.key}`}
-                      className='detail__videoContainer'
-                    >
-                      <FontAwesomeIcon icon={faYoutube} className='youtube' />{' '}
-                      <div className='detail__videoName'>{video.name}</div>
-                    </a>
-                  ))}
-                </Description>
+                {results.length > 0 ? (
+                  <Description title='추천 영상'>
+                    {results.map((video) => (
+                      <a
+                        href={`https://www.youtube.com/watch?v=${video.key}`}
+                        className='detail__videoContainer'
+                      >
+                        <FontAwesomeIcon icon={faYoutube} className='youtube' />{' '}
+                        <div className='detail__videoName'>{video.name}</div>
+                      </a>
+                    ))}
+                  </Description>
+                ) : null}
                 <br />
                 <br />
               </div>

@@ -1,6 +1,4 @@
 import React from 'react';
-import Flicking from '@egjs/react-flicking';
-import { Fade, AutoPlay } from '@egjs/flicking-plugins';
 import { motion } from 'framer-motion';
 import Section from '../components/Section';
 import NavBottom from '../components/NavBottom';
@@ -9,14 +7,11 @@ import { utils } from '../utils';
 import { movieApi } from '../Api';
 import './Home.css';
 
-const plugins = [new Fade(), new AutoPlay(2600, 'NEXT')];
-
-class Home extends React.Component {
+class Search extends React.Component {
   state = {
     isLoading: true,
     nowPlaying: [],
     topRated: [],
-    popular: [],
     upComing: [],
   };
 
@@ -40,34 +35,19 @@ class Home extends React.Component {
     utils.overview_replace(topRated, overview2);
 
     const {
-      data: { results: popular },
-    } = await movieApi.popular();
-
-    const {
-      data: { results: overview3 },
-    } = await movieApi.popularUS();
-    utils.overview_replace(popular, overview3);
-
-    const {
       data: { results: upComing },
     } = await movieApi.upComing();
 
     const {
-      data: { results: overview4 },
+      data: { results: overview3 },
     } = await movieApi.upComingUS();
-    utils.overview_replace(upComing, overview4);
+    utils.overview_replace(upComing, overview3);
 
-    this.setState({
-      nowPlaying,
-      topRated,
-      upComing,
-      popular,
-      isLoading: false,
-    });
+    this.setState({ nowPlaying, topRated, upComing, isLoading: false });
   }
 
   render() {
-    const { isLoading, nowPlaying, topRated, popular, upComing } = this.state;
+    const { isLoading, nowPlaying, topRated, upComing } = this.state;
     return isLoading ? (
       <Loader />
     ) : (
@@ -78,19 +58,9 @@ class Home extends React.Component {
         exit={{ opacity: 0 }}
       >
         {nowPlaying && nowPlaying.length > 0 && (
-          <Flicking
-            className='flicking'
-            circular={true}
-            zIndex={0}
-            duration={400}
-            collectStatistics={false}
-            plugins={plugins}
-          >
-            {utils.Panel_render(nowPlaying)}
-          </Flicking>
-        )}
-        {popular && popular.length > 0 && (
-          <Section title='Popular'>{utils.Movie_render(popular)}</Section>
+          <Section title='Now Playing'>
+            {utils.Movie_render(nowPlaying)}
+          </Section>
         )}
         {topRated && topRated.length > 0 && (
           <Section title='Top Rated'>{utils.Movie_render(topRated)}</Section>
@@ -104,4 +74,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default Search;

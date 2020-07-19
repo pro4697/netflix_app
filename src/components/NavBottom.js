@@ -13,12 +13,12 @@ function NavBottom() {
         </Link>
       </div>
       <div className='nav__bottom__content'>
-        <Link to='/about'>
+        <Link to='/tv'>
           <FontAwesomeIcon icon={faTv} className='nav__icon' />
         </Link>
       </div>
       <div className='nav__bottom__content'>
-        <Link to='/about'>
+        <Link to='/search'>
           <FontAwesomeIcon icon={faSearch} className='nav__icon' />
         </Link>
       </div>

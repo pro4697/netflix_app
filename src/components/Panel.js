@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import './Panel.css';
 
-function Panel({ id, title, _date, overview, poster, backdrop, vote }) {
-  const date = _date.split('-');
+function Panel({ id, title, date, overview, poster, backdrop, vote }) {
   return (
     <div className='panel__container'>
       {backdrop !== 'https://image.tmdb.org/t/p/w500null' ? (
@@ -46,7 +45,7 @@ function Panel({ id, title, _date, overview, poster, backdrop, vote }) {
 Panel.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  _date: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
   backdrop: PropTypes.string.isRequired,

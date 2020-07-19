@@ -25,8 +25,8 @@ export const movieApi = {
   popularUS: () => axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}`),
 
   topRated: () =>
-    axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`),
-  topRatedUS: () => axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}`),
+    axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=ko-KR`),
+  topRatedUS: () => axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`),
 
   getDetail: (id) =>
     axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`),
@@ -34,5 +34,23 @@ export const movieApi = {
   getVideos: (id) =>
     axios.get(
       `${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}&append_to_response=videos`
+    ),
+};
+
+export const tvApi = {
+  today: () =>
+    axios.get(`${BASE_URL}/tv/airing_today?api_key=${API_KEY}&language=ko-KR`),
+  thisWeek: () =>
+    axios.get(`${BASE_URL}/tv/on_the_air?api_key=${API_KEY}&language=ko-KR`),
+  topRated: () =>
+    axios.get(`${BASE_URL}/tv/top_rated?api_key=${API_KEY}&language=ko-KR`),
+  popular: () =>
+    axios.get(`${BASE_URL}/tv/popular?api_key=${API_KEY}&language=ko-KR`),
+  //search: (query) => axios.get(`${BASE_URL}/search/tv`, { query }),
+  getDetail: (id) =>
+    axios.get(`${BASE_URL}/tv/${id}?api_key=${API_KEY}&language=ko-KR`),
+  getVideos: (id) =>
+    axios.get(
+      `${BASE_URL}/tv/${id}/videos?api_key=${API_KEY}&append_to_response=videos`
     ),
 };

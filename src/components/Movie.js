@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-function Movie({ id, title, _date, overview, poster, backdrop, vote }) {
-  const date = _date.split('-');
+function Movie({ id, title, date, overview, poster, backdrop, vote, isTv }) {
+  //const date = _date.split('-');
   //const pattern_eng = /[a-zA-Z]/;
   // 영어 21 한글 10
 
@@ -15,7 +15,7 @@ function Movie({ id, title, _date, overview, poster, backdrop, vote }) {
       <Link
         to={{
           pathname: '/movie-detail',
-          state: { id, title, date, overview, poster, backdrop, vote },
+          state: { id, title, date, overview, poster, backdrop, vote, isTv },
         }}
       >
         {poster !== 'https://image.tmdb.org/t/p/w500null' ? (
@@ -26,7 +26,7 @@ function Movie({ id, title, _date, overview, poster, backdrop, vote }) {
         ) : null}
         <div className='movie__data'>
           <h3 className='movie__title'>{title}</h3>
-          <div className='movie__year'>{date[0]}</div>
+          <div className='movie__year'>{date.split('-')[0]}</div>
           <div className='movie__vote'>
             <FontAwesomeIcon icon={faStar} className='movie__star' />
             {vote}
@@ -40,11 +40,12 @@ function Movie({ id, title, _date, overview, poster, backdrop, vote }) {
 Movie.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  _date: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
   backdrop: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
+  isTv: PropTypes.bool.isRequired,
 };
 
 export default Movie;
