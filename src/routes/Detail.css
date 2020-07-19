@@ -111,25 +111,23 @@
   padding-left: 0;
   margin-left: 0;
 }
-
 .detail__videoContainer {
-  height: 20px;
-  vertical-align: middle;
+  margin-top: 7px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
 }
-
 .youtube {
-  height: 100%;
-  width: 30px;
+  display: flex;
   float: left;
-  margin-right: 5px;
-  vertical-align: middle;
-  display: block;
-  font-size: 18px;
+  height: 100%;
+  font-size: 22px;
 }
 
 .detail__videoName {
-  display: inline;
-  vertical-align: middle;
+  display: flex;
+  width: 100%;
+  margin-left: 10px;
 }
 
 .detail__description {
@@ -139,7 +137,6 @@
   padding-left: 5vw;
   margin-top: 50px;
   /* margin-right: 10vw; */
-  color: white;
   letter-spacing: 3px;
 }
 
@@ -155,8 +152,7 @@
 }
 
 a {
-  display: block;
-  color: white;
+  color: lightgray;
   text-decoration: none;
   margin-bottom: 5px;
 }

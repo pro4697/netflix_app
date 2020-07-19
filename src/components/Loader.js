@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
   width: 100%;
@@ -15,7 +16,7 @@ const Container = styled.div`
 
 const Loader = () => (
   <Container>
-    <FontAwesomeIcon icon={faCog} size='3x' spin />
+    <FontAwesomeIcon icon={faSpinner} size='3x' spin />
   </Container>
 );
 

@@ -17,7 +17,7 @@ const Title = styled.span`
   margin-left: -4px;
   text-align: left;
   font-weight: 600;
-  color: white;
+  color: lightgray;
   border-bottom: 1px solid grey;
   @media screen and (max-width: 768px) {
     font-size: 13px;
@@ -31,7 +31,7 @@ const Body = styled.div`
   text-decoration: none;
   letter-spacing: 2px;
   // margin-left: 10px;
-  color: white;
+  color: lightgray;
   margin-top: 5px;
   margin-bottom: 7px;
   @media screen and (max-width: 768px) {
