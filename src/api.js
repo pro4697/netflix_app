@@ -28,6 +28,11 @@ export const movieApi = {
     axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=ko-KR`),
   topRatedUS: () => axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`),
 
+  search: (query) =>
+    axios.get(
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=ko-KR`
+    ),
+
   getDetail: (id) =>
     axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`),
 
@@ -46,7 +51,10 @@ export const tvApi = {
     axios.get(`${BASE_URL}/tv/top_rated?api_key=${API_KEY}&language=ko-KR`),
   popular: () =>
     axios.get(`${BASE_URL}/tv/popular?api_key=${API_KEY}&language=ko-KR`),
-  //search: (query) => axios.get(`${BASE_URL}/search/tv`, { query }),
+  search: (query) =>
+    axios.get(
+      `${BASE_URL}/search/tv?api_key=${API_KEY}&query=${query}&language=ko-KR`
+    ),
   getDetail: (id) =>
     axios.get(`${BASE_URL}/tv/${id}?api_key=${API_KEY}&language=ko-KR`),
   getVideos: (id) =>

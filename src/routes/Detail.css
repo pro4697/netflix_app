@@ -1,7 +1,6 @@
 .detail {
   position: relative;
   height: calc(100vh - 50px);
-  min-width: 400px;
   width: 100%;
   padding-top: 50px;
 }

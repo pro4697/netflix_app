@@ -4,6 +4,7 @@ import './Movie.css';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import NoImg from '../imgs/no_img.png';
 
 function Movie({ id, title, date, overview, poster, backdrop, vote, isTv }) {
   //const date = _date.split('-');
@@ -27,15 +28,20 @@ function Movie({ id, title, date, overview, poster, backdrop, vote, isTv }) {
           },
         }}
       >
-        {poster !== 'https://image.tmdb.org/t/p/w500null' ? (
-          <div
+        <picture>
+          <img
+            src={poster}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = NoImg;
+            }}
             className='movie__poster'
-            style={{ backgroundImage: `url(${poster})` }}
+            style={{ objectFit: 'cover' }}
           />
-        ) : null}
+        </picture>
         <div className='movie__data'>
           <h3 className='movie__title'>{title}</h3>
-          <div className='movie__year'>{date.split('-')[0]}</div>
+          <div className='movie__year'>{date.slice(0, 4) || '?'}</div>
           <div className='movie__vote'>
             <FontAwesomeIcon icon={faStar} className='movie__star' />
             {vote}

@@ -68,38 +68,44 @@ class Home extends React.Component {
 
   render() {
     const { isLoading, nowPlaying, topRated, popular, upComing } = this.state;
-    return isLoading ? (
-      <Loader />
-    ) : (
-      <motion.div
-        className='container'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        {nowPlaying && nowPlaying.length > 0 && (
-          <Flicking
-            className='flicking'
-            circular={true}
-            zIndex={0}
-            duration={400}
-            collectStatistics={false}
-            plugins={plugins}
+    return (
+      <>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <motion.div
+            className='container'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            {utils.Panel_render(nowPlaying)}
-          </Flicking>
+            {nowPlaying && nowPlaying.length > 0 && (
+              <Flicking
+                className='flicking'
+                circular={true}
+                zIndex={0}
+                duration={400}
+                collectStatistics={false}
+                plugins={plugins}
+              >
+                {utils.Panel_render(nowPlaying)}
+              </Flicking>
+            )}
+            {popular && popular.length > 0 && (
+              <Section title='Popular'>{utils.Movie_render(popular)}</Section>
+            )}
+            {topRated && topRated.length > 0 && (
+              <Section title='Top Rated'>
+                {utils.Movie_render(topRated)}
+              </Section>
+            )}
+            {upComing && upComing.length > 0 && (
+              <Section title='UpComing'>{utils.Movie_render(upComing)}</Section>
+            )}
+          </motion.div>
         )}
-        {popular && popular.length > 0 && (
-          <Section title='Popular'>{utils.Movie_render(popular)}</Section>
-        )}
-        {topRated && topRated.length > 0 && (
-          <Section title='Top Rated'>{utils.Movie_render(topRated)}</Section>
-        )}
-        {upComing && upComing.length > 0 && (
-          <Section title='UpComing'>{utils.Movie_render(upComing)}</Section>
-        )}
-        <NavBottom />
-      </motion.div>
+        <NavBottom props={['white', null, null]} />
+      </>
     );
   }
 }

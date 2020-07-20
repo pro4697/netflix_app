@@ -7,6 +7,7 @@ import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { movieApi, tvApi } from '../Api';
 import { utils } from '../utils';
 import Description from '../components/Description';
+import NoImg from '../imgs/no_img.png';
 import './Detail.css';
 
 const page = {
@@ -116,12 +117,17 @@ class Detail extends React.Component {
 
           <br />
           <div className='detail__container'>
-            {location.state.poster !== 'https://image.tmdb.org/t/p/w500null' ? (
-              <div
+            <picture>
+              <img
+                src={location.state.poster}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = NoImg;
+                }}
                 className='detail__poster'
-                style={{ backgroundImage: `url(${location.state.poster})` }}
+                style={{ objectFit: 'cover' }}
               />
-            ) : null}
+            </picture>
             <div className='detail__info'>
               <div className='detail__title'>{location.state.title}</div>
               <div className='detail__title star'>

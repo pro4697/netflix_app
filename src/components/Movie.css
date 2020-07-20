@@ -3,9 +3,9 @@
   display: inline-block;
   width: 100px;
   height: 195px;
-  font-weight: 300;
   color: #adaeb9;
   margin-left: 20px;
+  padding-right: -20px;
   transition: all 300ms ease-out;
   border-radius: 5px;
 }
@@ -25,7 +25,6 @@
 
 .movie__poster {
   overflow: hidden;
-  background: center/cover no-repeat;
   width: 100px;
   height: 160px;
   margin-bottom: 0;

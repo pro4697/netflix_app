@@ -43,29 +43,33 @@ class Tv extends React.Component {
 
   render() {
     const { isLoading, today, thisWeek, topRated, popular } = this.state;
-    return isLoading ? (
-      <Loader />
-    ) : (
-      <motion.div
-        className='tv__container'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        {today && today.length > 0 && (
-          <Section title='Today'>{utils.Movie_render(today)}</Section>
+    return (
+      <>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <motion.div
+            className='tv__container'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {today && today.length > 0 && (
+              <Section title='Today'>{utils.Movie_render(today)}</Section>
+            )}
+            {thisWeek && thisWeek.length > 0 && (
+              <Section title='ThisWeek'>{utils.Movie_render(thisWeek)}</Section>
+            )}
+            {topRated && topRated.length > 0 && (
+              <Section title='TopRated'>{utils.Movie_render(topRated)}</Section>
+            )}
+            {popular && popular.length > 0 && (
+              <Section title='Popular'>{utils.Movie_render(popular)}</Section>
+            )}
+          </motion.div>
         )}
-        {thisWeek && thisWeek.length > 0 && (
-          <Section title='ThisWeek'>{utils.Movie_render(thisWeek)}</Section>
-        )}
-        {topRated && topRated.length > 0 && (
-          <Section title='TopRated'>{utils.Movie_render(topRated)}</Section>
-        )}
-        {popular && popular.length > 0 && (
-          <Section title='Popular'>{utils.Movie_render(popular)}</Section>
-        )}
-        <NavBottom />
-      </motion.div>
+        <NavBottom props={[null, 'white', null]} />
+      </>
     );
   }
 }
