@@ -7,6 +7,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import NoImg from '../imgs/no_img.png';
 
 function Movie({ id, title, date, overview, poster, backdrop, vote, isTv }) {
+  if (date === undefined) date = '0000-00-00';
   //const date = _date.split('-');
   //const pattern_eng = /[a-zA-Z]/;
   // 영어 21 한글 10
@@ -29,19 +30,29 @@ function Movie({ id, title, date, overview, poster, backdrop, vote, isTv }) {
         }}
       >
         <picture>
-          <img
-            src={poster}
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = NoImg;
-            }}
-            className='movie__poster'
-            style={{ objectFit: 'cover' }}
-          />
+          {poster !== 'https://image.tmdb.org/t/p/w500null' ? (
+            <img
+              src={poster}
+              alt={title}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = NoImg;
+              }}
+              className='movie__poster'
+              style={{ objectFit: 'cover' }}
+            />
+          ) : (
+            <img
+              src={NoImg}
+              alt={title}
+              className='movie__poster'
+              style={{ objectFit: 'cover' }}
+            />
+          )}
         </picture>
         <div className='movie__data'>
           <h3 className='movie__title'>{title}</h3>
-          <div className='movie__year'>{date.slice(0, 4) || '?'}</div>
+          <div className='movie__year'>{date.slice(0, 4)}</div>
           <div className='movie__vote'>
             <FontAwesomeIcon icon={faStar} className='movie__star' />
             {vote}

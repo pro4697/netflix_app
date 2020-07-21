@@ -120,6 +120,7 @@ class Detail extends React.Component {
             <picture>
               <img
                 src={location.state.poster}
+                alt={location.state.title}
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = NoImg;
@@ -140,7 +141,7 @@ class Detail extends React.Component {
                 </Description>
                 {isTv ? (
                   <Description title='최신 방영일자'>
-                    {utils.format_date(last_date)}
+                    {utils.format_date(last_date || '0000-00-00')}
                   </Description>
                 ) : null}
                 <Description title='장르'>

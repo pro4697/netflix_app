@@ -52,7 +52,7 @@ class Search extends React.Component {
         >
           <form onSubmit={this.handleSubmit}>
             <input
-              valu={this.state.value}
+              value={this.state.value}
               onChange={this.handleChange}
               placeholder='키워드 입력'
             />
