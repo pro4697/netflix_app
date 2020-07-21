@@ -15,9 +15,9 @@ function App() {
       <AnimatePresence>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/tv' component={Tv} />
-          <Route path='/search' component={Search} />
-          <Route path='/movie-detail' component={Detail} />
+          <Route exact path='/tv' component={Tv} />
+          <Route exact path='/search' component={Search} />
+          <Route exact path='/movie-detail' component={Detail} />
         </Switch>
       </AnimatePresence>
     </HashRouter>

@@ -39,6 +39,7 @@ class Detail extends React.Component {
     }
 
     if (!location.state.isTv) {
+      // 영화 추가데이터 가져오기
       const {
         data: { genres, runtime },
       } = await movieApi.getDetail(location.state.id);
@@ -48,6 +49,7 @@ class Detail extends React.Component {
       } = await movieApi.getVideos(location.state.id);
       this.setState({ genres, runtime, results, isTv: location.state.isTv });
     } else {
+      // 드라마 추가데이터 가져오기
       const {
         data: {
           genres,
@@ -137,7 +139,7 @@ class Detail extends React.Component {
               </div>
               <div className='detail__description'>
                 <Description title={isTv ? '첫 방영일자' : '개봉'}>
-                  {utils.format_date(location.state.date)}
+                  {utils.format_date(location.state.date || '0000-00-00')}
                 </Description>
                 {isTv ? (
                   <Description title='최신 방영일자'>

@@ -1,26 +1,18 @@
-import React from 'react';
-import Flicking from '@egjs/react-flicking';
-import { Fade, AutoPlay } from '@egjs/flicking-plugins';
-import { motion } from 'framer-motion';
-import Section from '../components/Section';
-import NavBottom from '../components/NavBottom';
-import Loader from '../components/Loader';
+import React, { useEffect, useState } from 'react';
 import { utils } from '../utils';
 import { movieApi } from '../Api';
-import './Home.css';
+import Home from './HomeRender';
 
-const plugins = [new Fade(), new AutoPlay(2600, 'NEXT')];
-
-class Home extends React.Component {
-  state = {
+export default () => {
+  const [movies, setMovies] = useState({
     isLoading: true,
     nowPlaying: [],
     topRated: [],
     popular: [],
     upComing: [],
-  };
+  });
 
-  async componentDidMount() {
+  const getData = async () => {
     const {
       data: { results: nowPlaying },
     } = await movieApi.nowPlaying();
@@ -57,57 +49,19 @@ class Home extends React.Component {
     } = await movieApi.upComingUS();
     utils.overview_replace(upComing, overview4);
 
-    this.setState({
+    setMovies({
+      isLoading: false,
       nowPlaying,
       topRated,
-      upComing,
       popular,
-      isLoading: false,
+      upComing,
     });
-  }
+  };
 
-  render() {
-    const { isLoading, nowPlaying, topRated, popular, upComing } = this.state;
-    return (
-      <>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <motion.div
-            className='container'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            {nowPlaying && nowPlaying.length > 0 && (
-              <Flicking
-                className='flicking'
-                circular={true}
-                zIndex={0}
-                duration={400}
-                collectStatistics={false}
-                plugins={plugins}
-              >
-                {utils.Panel_render(nowPlaying)}
-              </Flicking>
-            )}
-            {popular && popular.length > 0 && (
-              <Section title='Popular'>{utils.Movie_render(popular)}</Section>
-            )}
-            {topRated && topRated.length > 0 && (
-              <Section title='Top Rated'>
-                {utils.Movie_render(topRated)}
-              </Section>
-            )}
-            {upComing && upComing.length > 0 && (
-              <Section title='UpComing'>{utils.Movie_render(upComing)}</Section>
-            )}
-          </motion.div>
-        )}
-        <NavBottom props={['white', null, null]} />
-      </>
-    );
-  }
-}
+  useEffect(() => {
+    getData();
+    console.log('get Data');
+  }, []);
 
-export default Home;
+  return <Home {...movies} />;
+};

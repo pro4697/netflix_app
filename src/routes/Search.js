@@ -70,6 +70,9 @@ class Search extends React.Component {
                   {tv && tv.length > 0 && (
                     <Section title='TV Shows'>{utils.Movie_render(tv)}</Section>
                   )}
+                  {tv.length === 0 && movies.length === 0 && (
+                    <Section title='No Results' />
+                  )}
                 </>
               ))}
         </motion.div>
