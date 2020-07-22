@@ -1,6 +1,6 @@
 {
   "name": "netflix_app",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@egjs/flicking-plugins": "^3.2.0",
@@ -21,6 +21,8 @@
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.1"
   },
+  "author": "Kichan Yoon",
+  "license": "ISC",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
