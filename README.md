@@ -17,3 +17,4 @@
 -   첫 React 코딩 입니다.
 -   Movie API (themovieapi)
 -   Class component
+-   prop-types
