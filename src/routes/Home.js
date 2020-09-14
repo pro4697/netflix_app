@@ -6,7 +6,7 @@ import Section from '../components/Section';
 import NavBottom from '../components/NavBottom';
 import Loader from '../components/Loader';
 import './Home.css';
-import { utils } from '../utils';
+import { MovieRender, PanelRender } from '../utils';
 
 import { getMovieData } from '../_actions/action';
 import { connect } from 'react-redux';
@@ -22,7 +22,6 @@ class Home extends React.Component {
 
   async componentDidMount() {
     if (!this.props.isSaved) {
-      console.log('init');
       // 처음 Movie탭으로 접속시 JSON 받아옴
       this.props.getMovie().then((res) => {
         this.setState({
@@ -34,7 +33,6 @@ class Home extends React.Component {
         });
       });
     } else {
-      console.log('reload');
       // 이후 재접속시 Redux에서 가져옴
       this.setState({
         isLoading: false,
@@ -62,6 +60,7 @@ class Home extends React.Component {
             {nowPlaying && nowPlaying.length > 0 && (
               <Flicking
                 className='flicking'
+                zIndex={0}
                 circular={true}
                 duration={400}
                 adaptive={true}
@@ -69,19 +68,17 @@ class Home extends React.Component {
                 collectStatistics={false}
                 plugins={[new Fade(), new AutoPlay(2600, 'NEXT')]}
               >
-                {utils.Panel_render(nowPlaying)}
+                {PanelRender(nowPlaying)}
               </Flicking>
             )}
             {popular && popular.length > 0 && (
-              <Section title='Popular'>{utils.Movie_render(popular)}</Section>
+              <Section title='Popular'>{MovieRender(popular)}</Section>
             )}
             {topRated && topRated.length > 0 && (
-              <Section title='Top Rated'>
-                {utils.Movie_render(topRated)}
-              </Section>
+              <Section title='Top Rated'>{MovieRender(topRated)}</Section>
             )}
             {upComing && upComing.length > 0 && (
-              <Section title='UpComing'>{utils.Movie_render(upComing)}</Section>
+              <Section title='UpComing'>{MovieRender(upComing)}</Section>
             )}
           </motion.div>
         )}

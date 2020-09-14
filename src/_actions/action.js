@@ -1,6 +1,6 @@
 import { movieApi, tvApi } from '../Api';
 import { MOVIE_DATA, TV_DATA } from './types';
-import { utils } from '../utils';
+import { overviewReplace } from '../utils';
 
 export const getMovieData = async () => {
   const {
@@ -10,7 +10,7 @@ export const getMovieData = async () => {
   const {
     data: { results: overview1 },
   } = await movieApi.nowPlayingUS();
-  utils.overview_replace(nowPlaying, overview1);
+  overviewReplace(nowPlaying, overview1);
 
   const {
     data: { results: topRated },
@@ -19,7 +19,7 @@ export const getMovieData = async () => {
   const {
     data: { results: overview2 },
   } = await movieApi.topRatedUS();
-  utils.overview_replace(topRated, overview2);
+  overviewReplace(topRated, overview2);
 
   const {
     data: { results: popular },
@@ -28,7 +28,7 @@ export const getMovieData = async () => {
   const {
     data: { results: overview3 },
   } = await movieApi.popularUS();
-  utils.overview_replace(popular, overview3);
+  overviewReplace(popular, overview3);
 
   const {
     data: { results: upComing },
@@ -37,7 +37,7 @@ export const getMovieData = async () => {
   const {
     data: { results: overview4 },
   } = await movieApi.upComingUS();
-  utils.overview_replace(upComing, overview4);
+  overviewReplace(upComing, overview4);
 
   return {
     type: MOVIE_DATA,

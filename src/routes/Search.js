@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Section from '../components/Section';
 import NavBottom from '../components/NavBottom';
-import { utils } from '../utils';
+import { MovieRender } from '../utils';
 import { movieApi, tvApi } from '../Api';
 import './Search.css';
 
@@ -23,6 +23,7 @@ class Search extends React.Component {
       const {
         data: { results: tv },
       } = await tvApi.search(this.state.value);
+
       this.setState({ movies, tv, isLoading: false });
     }
   };
@@ -57,24 +58,19 @@ class Search extends React.Component {
               placeholder='키워드 입력'
             />
           </form>
-          {isLoading
-            ? null
-            : (console.log(tv),
-              (
-                <>
-                  {movies && movies.length > 0 && (
-                    <Section title='Movie'>
-                      {utils.Movie_render(movies)}
-                    </Section>
-                  )}
-                  {tv && tv.length > 0 && (
-                    <Section title='TV Shows'>{utils.Movie_render(tv)}</Section>
-                  )}
-                  {tv.length === 0 && movies.length === 0 && (
-                    <Section title='No Results' />
-                  )}
-                </>
-              ))}
+          {isLoading ? null : (
+            <>
+              {movies && movies.length > 0 && (
+                <Section title='Movie'>{MovieRender(movies)}</Section>
+              )}
+              {tv && tv.length > 0 && (
+                <Section title='TV Shows'>{MovieRender(tv)}</Section>
+              )}
+              {tv.length === 0 && movies.length === 0 && (
+                <Section title='No Results' />
+              )}
+            </>
+          )}
         </motion.div>
         <NavBottom props={[null, null, 'white']} />
       </>

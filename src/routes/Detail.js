@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { movieApi, tvApi } from '../Api';
-import { utils } from '../utils';
+import { formatDate } from '../utils';
 import Description from '../components/Description';
 import NoImg from '../imgs/no_img.png';
 import './Detail.css';
@@ -89,8 +89,10 @@ class Detail extends React.Component {
     } = this.state;
 
     if (location.state) {
-      const over = location.state.overview.split('. '); // 문단별로 자르고
-      for (let i = 0; i < over.length - 1; i++) over[i] += '.'; // 문단끝에 마침표를 찍는다
+      const overview = location.state.overview.split('. '); // 문단별로 자르고 마침표를 찍기
+      for (let i = 0; i < overview.length - 1; i++) {
+        overview[i] += '.';
+      }
 
       return (
         <motion.div
@@ -139,11 +141,11 @@ class Detail extends React.Component {
               </div>
               <div className='detail__description'>
                 <Description title={isTv ? '첫 방영일자' : '개봉'}>
-                  {utils.format_date(location.state.date || '0000-00-00')}
+                  {formatDate(location.state.date || '0000-00-00')}
                 </Description>
                 {isTv ? (
                   <Description title='최신 방영일자'>
-                    {utils.format_date(last_date || '0000-00-00')}
+                    {formatDate(last_date || '0000-00-00')}
                   </Description>
                 ) : null}
                 <Description title='장르'>
@@ -158,8 +160,8 @@ class Detail extends React.Component {
                   </Description>
                 ) : null}
                 <Description title='줄거리'>
-                  {over.map((overv, idx) => (
-                    <p key={idx}>{overv}</p>
+                  {overview.map((o, idx) => (
+                    <p key={idx}>{o}</p>
                   ))}
                 </Description>
                 {results.length > 0 ? (
