@@ -90,7 +90,7 @@ class Detail extends React.Component {
 
     if (location.state) {
       const over = location.state.overview.split('. '); // 문단별로 자르고
-      for (var i = 0; i < over.length - 1; i++) over[i] += '.'; // 문단끝에 마침표를 찍는다
+      for (let i = 0; i < over.length - 1; i++) over[i] += '.'; // 문단끝에 마침표를 찍는다
 
       return (
         <motion.div

@@ -4,8 +4,10 @@ import Section from '../components/Section';
 import NavBottom from '../components/NavBottom';
 import Loader from '../components/Loader';
 import { utils } from '../utils';
-import { tvApi } from '../Api';
 import './Tv.css';
+
+import { getTvData } from '../_actions/action';
+import { connect } from 'react-redux';
 
 class Tv extends React.Component {
   state = {
@@ -17,28 +19,29 @@ class Tv extends React.Component {
   };
 
   async componentDidMount() {
-    const {
-      data: { results: today },
-    } = await tvApi.today();
-
-    // const {
-    //   data: { results: overview1 },
-    // } = await movieApi.nowPlayingUS();
-    // utils.overview_replace(nowPlaying, overview1);
-
-    const {
-      data: { results: thisWeek },
-    } = await tvApi.thisWeek();
-
-    const {
-      data: { results: topRated },
-    } = await tvApi.topRated();
-
-    const {
-      data: { results: popular },
-    } = await tvApi.popular();
-
-    this.setState({ today, topRated, thisWeek, popular, isLoading: false });
+    if (!this.props.isSaved) {
+      // 처음 Movie탭으로 접속시 JSON 받아옴
+      this.props.getMovie().then((res) => {
+        console.log('init');
+        this.setState({
+          isLoading: false,
+          today: res.payload.today,
+          thisWeek: res.payload.thisWeek,
+          topRated: res.payload.topRated,
+          popular: res.payload.popular,
+        });
+      });
+    } else {
+      console.log('reload');
+      // 이후 재접속시 Redux에서 가져옴
+      this.setState({
+        isLoading: false,
+        today: this.props.isSaved.payload.today,
+        thisWeek: this.props.isSaved.payload.thisWeek,
+        topRated: this.props.isSaved.payload.topRated,
+        popular: this.props.isSaved.payload.popular,
+      });
+    }
   }
 
   render() {
@@ -74,4 +77,12 @@ class Tv extends React.Component {
   }
 }
 
-export default Tv;
+const mapStateToProps = (state) => ({
+  isSaved: state.store.tvData,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getMovie: () => dispatch(getTvData()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tv);

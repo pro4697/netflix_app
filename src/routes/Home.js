@@ -7,9 +7,9 @@ import NavBottom from '../components/NavBottom';
 import Loader from '../components/Loader';
 import './Home.css';
 import { utils } from '../utils';
-import { movieApi } from '../Api';
 
-const plugins = [new Fade(), new AutoPlay(2600, 'NEXT')];
+import { getMovieData } from '../_actions/action';
+import { connect } from 'react-redux';
 
 class Home extends React.Component {
   state = {
@@ -21,50 +21,29 @@ class Home extends React.Component {
   };
 
   async componentDidMount() {
-    const {
-      data: { results: nowPlaying },
-    } = await movieApi.nowPlaying();
-
-    // 한글로 번역된 줄거리가 없는 경우 영문 줄거리로 대체
-    const {
-      data: { results: overview1 },
-    } = await movieApi.nowPlayingUS();
-    utils.overview_replace(nowPlaying, overview1);
-
-    const {
-      data: { results: topRated },
-    } = await movieApi.topRated();
-
-    const {
-      data: { results: overview2 },
-    } = await movieApi.topRatedUS();
-    utils.overview_replace(topRated, overview2);
-
-    const {
-      data: { results: popular },
-    } = await movieApi.popular();
-
-    const {
-      data: { results: overview3 },
-    } = await movieApi.popularUS();
-    utils.overview_replace(popular, overview3);
-
-    const {
-      data: { results: upComing },
-    } = await movieApi.upComing();
-
-    const {
-      data: { results: overview4 },
-    } = await movieApi.upComingUS();
-    utils.overview_replace(upComing, overview4);
-
-    this.setState({
-      isLoading: false,
-      nowPlaying,
-      topRated,
-      popular,
-      upComing,
-    });
+    if (!this.props.isSaved) {
+      console.log('init');
+      // 처음 Movie탭으로 접속시 JSON 받아옴
+      this.props.getMovie().then((res) => {
+        this.setState({
+          isLoading: false,
+          nowPlaying: res.payload.nowPlaying,
+          topRated: res.payload.topRated,
+          popular: res.payload.popular,
+          upComing: res.payload.upComing,
+        });
+      });
+    } else {
+      console.log('reload');
+      // 이후 재접속시 Redux에서 가져옴
+      this.setState({
+        isLoading: false,
+        nowPlaying: this.props.isSaved.payload.nowPlaying,
+        topRated: this.props.isSaved.payload.topRated,
+        popular: this.props.isSaved.payload.popular,
+        upComing: this.props.isSaved.payload.upComing,
+      });
+    }
   }
 
   render() {
@@ -84,10 +63,11 @@ class Home extends React.Component {
               <Flicking
                 className='flicking'
                 circular={true}
-                zIndex={0}
                 duration={400}
+                adaptive={true}
+                autoResize={true}
                 collectStatistics={false}
-                plugins={plugins}
+                plugins={[new Fade(), new AutoPlay(2600, 'NEXT')]}
               >
                 {utils.Panel_render(nowPlaying)}
               </Flicking>
@@ -111,4 +91,12 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+  isSaved: state.store.movieData,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getMovie: () => dispatch(getMovieData()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

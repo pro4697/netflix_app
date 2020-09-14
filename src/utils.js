@@ -36,7 +36,7 @@ export const utils = {
   },
 
   overview_replace(movie, overview) {
-    for (var i = 0; i < movie.length; i++)
+    for (let i = 0; i < movie.length; i++)
       if (movie[i].overview.length < 10)
         movie[i].overview = overview[i].overview;
   },
