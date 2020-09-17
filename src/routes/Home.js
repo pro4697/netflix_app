@@ -64,7 +64,10 @@ class Home extends React.Component {
                 circular={true}
                 duration={400}
                 adaptive={true}
+                renderExternal={true}
+                renderOnlyVisible={true}
                 autoResize={true}
+                isEqualSize={true}
                 collectStatistics={false}
                 plugins={[new Fade(), new AutoPlay(2600, 'NEXT')]}
               >
