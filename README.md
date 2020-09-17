@@ -1,3 +1,6 @@
+![k-flex](https://user-images.githubusercontent.com/43352126/93514471-36386c00-f962-11ea-8094-595f666170c7.png)
+
+
 # K-FLEX (2020.07)
 
 ### Preview
