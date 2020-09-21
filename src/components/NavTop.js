@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './NavTop.css';
 import Logo from '../imgs/netflix_logo.png';
 
-function NavTop() {
+const NavTop = () => {
   return (
     <div>
       <div className='nav__top'>
@@ -15,6 +15,6 @@ function NavTop() {
       </div>
     </div>
   );
-}
+};
 
 export default NavTop;

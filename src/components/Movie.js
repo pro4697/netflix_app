@@ -6,10 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import NoImg from '../imgs/no_img.png';
 
-function Movie({ id, title, date, overview, poster, backdrop, vote, isTv }) {
+const Movie = ({ id, title, date, overview, poster, backdrop, vote, isTv }) => {
   if (date === undefined) date = '0000-00-00';
-  //const date = _date.split('-');
-  //const pattern_eng = /[a-zA-Z]/;
   // 영어 21 한글 10
 
   return (
@@ -61,7 +59,7 @@ function Movie({ id, title, date, overview, poster, backdrop, vote, isTv }) {
       </Link>
     </div>
   );
-}
+};
 
 Movie.propTypes = {
   id: PropTypes.number.isRequired,

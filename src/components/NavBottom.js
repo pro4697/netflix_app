@@ -4,7 +4,7 @@ import './NavBottom.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilm, faTv, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-function NavBottom({ props }) {
+const NavBottom = ({ props }) => {
   return (
     <div className='nav__bottom'>
       <div className='nav__bottom__content'>
@@ -36,6 +36,6 @@ function NavBottom({ props }) {
       </div>
     </div>
   );
-}
+};
 
 export default NavBottom;
