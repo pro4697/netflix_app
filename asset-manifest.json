@@ -1,23 +1,16 @@
 {
   "files": {
-    "main.css": "/netflix_app/static/css/main.30f133e3.chunk.css",
-    "main.js": "/netflix_app/static/js/main.5ec77749.chunk.js",
-    "main.js.map": "/netflix_app/static/js/main.5ec77749.chunk.js.map",
-    "runtime-main.js": "/netflix_app/static/js/runtime-main.7f76722e.js",
-    "runtime-main.js.map": "/netflix_app/static/js/runtime-main.7f76722e.js.map",
-    "static/js/2.ae5a4574.chunk.js": "/netflix_app/static/js/2.ae5a4574.chunk.js",
-    "static/js/2.ae5a4574.chunk.js.map": "/netflix_app/static/js/2.ae5a4574.chunk.js.map",
+    "main.css": "/netflix_app/static/css/main.6da7df00.chunk.css",
+    "main.js": "/netflix_app/static/js/main.ba32e804.chunk.js",
+    "main.js.map": "/netflix_app/static/js/main.ba32e804.chunk.js.map",
+    "runtime~main.js": "/netflix_app/static/js/runtime~main.a1097332.js",
+    "runtime~main.js.map": "/netflix_app/static/js/runtime~main.a1097332.js.map",
+    "static/js/2.155ef08b.chunk.js": "/netflix_app/static/js/2.155ef08b.chunk.js",
+    "static/js/2.155ef08b.chunk.js.map": "/netflix_app/static/js/2.155ef08b.chunk.js.map",
     "index.html": "/netflix_app/index.html",
-    "precache-manifest.4dba2819d609c068009f844e2f91dc57.js": "/netflix_app/precache-manifest.4dba2819d609c068009f844e2f91dc57.js",
+    "precache-manifest.3fc581bb20758e52b0b1085ba0af0077.js": "/netflix_app/precache-manifest.3fc581bb20758e52b0b1085ba0af0077.js",
     "service-worker.js": "/netflix_app/service-worker.js",
-    "static/css/main.30f133e3.chunk.css.map": "/netflix_app/static/css/main.30f133e3.chunk.css.map",
-    "static/js/2.ae5a4574.chunk.js.LICENSE.txt": "/netflix_app/static/js/2.ae5a4574.chunk.js.LICENSE.txt",
+    "static/css/main.6da7df00.chunk.css.map": "/netflix_app/static/css/main.6da7df00.chunk.css.map",
     "static/media/netflix_logo.png": "/netflix_app/static/media/netflix_logo.dd14e5ae.png"
-  },
-  "entrypoints": [
-    "static/js/runtime-main.7f76722e.js",
-    "static/js/2.ae5a4574.chunk.js",
-    "static/css/main.30f133e3.chunk.css",
-    "static/js/main.5ec77749.chunk.js"
-  ]
+  }
 }
