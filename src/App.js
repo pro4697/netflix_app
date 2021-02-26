@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Tv from './routes/Tv';
 import Home from './routes/Home';
@@ -11,7 +11,7 @@ import './App.css';
 
 function App() {
 	return (
-		<HashRouter>
+		<BrowserRouter>
 			<NavTop />
 			<AnimatePresence>
 				<Switch>
@@ -22,7 +22,7 @@ function App() {
 				</Switch>
 			</AnimatePresence>
 			<NavBottom />
-		</HashRouter>
+		</BrowserRouter>
 	);
 }
 
