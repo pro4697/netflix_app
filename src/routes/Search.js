@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import NavBottom from '../components/NavBottom';
 import { RenderList } from '../utils';
 import { movieApi, tvApi } from '../Api';
 import './Search.css';
@@ -51,7 +50,11 @@ class Search extends React.Component {
 					exit={{ opacity: 0 }}
 				>
 					<form onSubmit={this.handleSubmit}>
-						<input value={this.state.value} onChange={this.handleChange} placeholder='키워드 입력' />
+						<input
+							value={this.state.value}
+							onChange={this.handleChange}
+							placeholder='키워드 입력'
+						/>
 					</form>
 					{isLoading ? null : (
 						<>
@@ -61,10 +64,9 @@ class Search extends React.Component {
 						</>
 					)}
 				</motion.div>
-				<NavBottom props={[null, null, 'white']} />
 			</>
 		);
 	}
 }
 
-export default Search;
+export default React.memo(Search);

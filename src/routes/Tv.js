@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import NavBottom from '../components/NavBottom';
 import Loader from '../components/Loader';
 import { RenderList } from '../utils';
 import './Tv.css';
@@ -46,14 +45,18 @@ class Tv extends React.Component {
 				{isLoading ? (
 					<Loader />
 				) : (
-					<motion.div className='tv__container' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+					<motion.div
+						className='tv__container'
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+					>
 						{today?.length > 0 && RenderList('Today', today)}
 						{thisWeek?.length > 0 && RenderList('ThisWeek', thisWeek)}
 						{topRated?.length > 0 && RenderList('TopRated', topRated)}
 						{popular?.length > 0 && RenderList('Popular', popular)}
 					</motion.div>
 				)}
-				<NavBottom props={[null, 'white', null]} />
 			</>
 		);
 	}

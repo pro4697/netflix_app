@@ -2,7 +2,6 @@ import React from 'react';
 import Flicking from '@egjs/react-flicking';
 import { Fade, AutoPlay } from '@egjs/flicking-plugins';
 import { motion } from 'framer-motion';
-import NavBottom from '../components/NavBottom';
 import Loader from '../components/Loader';
 import { RenderList, RenderPanel } from '../utils';
 import './Home.css';
@@ -50,7 +49,12 @@ class Home extends React.Component {
 				{isLoading ? (
 					<Loader />
 				) : (
-					<motion.div className='container' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+					<motion.div
+						className='container'
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+					>
 						{nowPlaying?.length > 0 && (
 							<Flicking
 								className='flicking'
@@ -73,7 +77,6 @@ class Home extends React.Component {
 						{upComing?.length > 0 && RenderList('UpComing', upComing)}
 					</motion.div>
 				)}
-				<NavBottom props={['white', null, null]} />
 			</>
 		);
 	}
