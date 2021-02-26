@@ -11,7 +11,7 @@ import './App.css';
 
 function App() {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename='/netflix_app'>
 			<NavTop />
 			<AnimatePresence>
 				<Switch>
