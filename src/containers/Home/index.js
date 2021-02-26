@@ -2,11 +2,11 @@ import React from 'react';
 import Flicking from '@egjs/react-flicking';
 import { Fade, AutoPlay } from '@egjs/flicking-plugins';
 import { motion } from 'framer-motion';
-import Loader from '../components/Loader';
-import { RenderList, RenderPanel } from '../utils';
+import Loader from '../../components/Loader';
+import { RenderList, RenderPanel } from '../../utils';
 import './Home.css';
 
-import { getMovieData } from '../_actions/action';
+import { getMovieData } from '../../_actions/action';
 import { connect } from 'react-redux';
 
 class Home extends React.Component {

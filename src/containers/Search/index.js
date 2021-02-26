@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { RenderList } from '../utils';
-import { movieApi, tvApi } from '../Api';
+import { RenderList } from '../../utils';
+import { movieApi, tvApi } from '../../Api';
 import './Search.css';
 
 class Search extends React.Component {

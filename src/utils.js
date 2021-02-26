@@ -1,6 +1,6 @@
 import React from 'react';
 import Section from './components/Section';
-import Movie from './components/Movie';
+import Movie from './components/MovieCard';
 import Panel from './components/Panel';
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
 

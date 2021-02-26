@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Loader from '../components/Loader';
-import { RenderList } from '../utils';
+import Loader from '../../components/Loader';
+import { RenderList } from '../../utils';
 import './Tv.css';
 
-import { getTvData } from '../_actions/action';
+import { getTvData } from '../../_actions/action';
 import { connect } from 'react-redux';
 
 class Tv extends React.Component {

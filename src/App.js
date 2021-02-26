@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import Tv from './routes/Tv';
-import Home from './routes/Home';
-import Search from './routes/Search';
+import Tv from './containers/Tv';
+import Home from './containers/Home';
+import Search from './containers/Search';
 import NavTop from './components/NavTop';
-import Detail from './routes/Detail';
+import Detail from './containers/Detail';
 import NavBottom from './components/NavBottom';
 import './App.css';
 
