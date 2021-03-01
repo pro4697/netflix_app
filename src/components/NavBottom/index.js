@@ -13,7 +13,7 @@ const Container = styled.div`
 	bottom: 0;
 	width: 100%;
 	height: 40px;
-	display: flex;
+	display: ${(props) => (props.display ? 'flex' : 'none')};
 	background-color: black;
 	padding: 0 20px;
 	padding-top: -15px;
@@ -32,19 +32,25 @@ const NavBottom = () => {
 	const { location } = useReactRouter();
 	const { pathname } = location;
 	const [color, setColor] = useState(['darkgrey', 'darkgrey', 'darkgrey']);
+	const [display, setDisplay] = useState(true);
 
 	useEffect(() => {
 		if (pathname === '/') {
 			setColor(['white', 'darkgrey', 'darkgrey']);
+			setDisplay(true);
 		} else if (pathname === '/tv') {
 			setColor(['darkgrey', 'white', 'darkgrey']);
+			setDisplay(true);
 		} else if (pathname === '/search') {
 			setColor(['darkgrey', 'darkgrey', 'white']);
+			setDisplay(true);
+		} else if (pathname === '/movie-detail') {
+			setDisplay(false);
 		}
 	}, [pathname]);
 
 	return (
-		<Container>
+		<Container display={display}>
 			<CLink to='/'>
 				<Icon icon={faFilm} color={color[0]} />
 			</CLink>

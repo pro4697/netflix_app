@@ -1,72 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { RenderList } from '../../utils';
 import { movieApi, tvApi } from '../../Api';
 import './Search.css';
 
-class Search extends React.Component {
-	state = {
+const Container = styled(motion.div)`
+	overflow-x: hidden;
+	padding-top: 50px;
+	padding-bottom: 40px;
+`;
+
+const Search = () => {
+	const [movies, setMovies] = useState([]);
+	const [tv, setTv] = useState([]);
+	const [state, setState] = useState({
 		isLoading: true,
 		movies: [],
 		tv: [],
 		value: '',
-	};
+	});
 
-	searchQuery = async () => {
-		if (this.state.value !== '') {
+	const searchQuery = async () => {
+		if (state.value !== '') {
 			const {
 				data: { results: movies },
-			} = await movieApi.search(this.state.value);
+			} = await movieApi.search(state.value);
 
 			const {
 				data: { results: tv },
-			} = await tvApi.search(this.state.value);
+			} = await tvApi.search(state.value);
 
-			this.setState({ movies, tv, isLoading: false });
+			//setMovies(movies);
+			//setTv(tv);
+			//setState({ isLoading: false });
+			setState({ movies: [...movies], tv: [...tv], isLoading: false });
 		}
 	};
 
-	componentDidMount() {
-		this.searchQuery();
-	}
-
-	handleChange = (e) => {
-		this.setState({ value: e.target.value });
+	const handleChange = (e) => {
+		setState({ value: e.target.value });
 	};
 
-	handleSubmit = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		this.searchQuery();
+		// searchQuery();
 	};
 
-	render() {
-		const { movies, tv, isLoading } = this.state;
-		return (
-			<>
-				<motion.div
-					className='search__container'
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
-				>
-					<form onSubmit={this.handleSubmit}>
-						<input
-							value={this.state.value}
-							onChange={this.handleChange}
-							placeholder='키워드 입력'
-						/>
-					</form>
-					{isLoading ? null : (
-						<>
-							{movies?.length > 0 && RenderList('Movie', movies)}
-							{tv?.length > 0 && RenderList('TV Shows', tv)}
-							{tv.length === 0 && movies.length === 0 && RenderList('No Results')}
-						</>
-					)}
-				</motion.div>
-			</>
-		);
-	}
-}
+	return (
+		<>
+			<Container initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+				<form onSubmit={handleSubmit}>
+					<input value={state.value} onChange={handleChange} placeholder='키워드 입력' />
+				</form>
+				{state.isLoading ? null : (
+					<>
+						{state.movies?.length > 0 && RenderList('Movie', state.movies)}
+						{state.tv?.length > 0 && RenderList('TV Shows', state.tv)}
+						{state.tv.length === 0 && state.movies.length === 0 && RenderList('No Results')}
+					</>
+				)}
+			</Container>
+		</>
+	);
+};
 
-export default React.memo(Search);
+export default Search;
