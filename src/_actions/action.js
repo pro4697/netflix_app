@@ -1,4 +1,4 @@
-import { movieApi, tvApi } from '../Api';
+import { movieApi, tvApi } from '../api';
 import { MOVIE_DATA, TV_DATA } from './types';
 import { overviewReplace } from '../utils';
 

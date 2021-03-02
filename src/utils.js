@@ -11,7 +11,7 @@ export const RenderList = (title, data) => (
 				key={movie.id}
 				id={movie.id}
 				title={movie.title || movie.name}
-				date={movie.release_date || movie.first_air_date}
+				date={movie.release_date || movie.first_air_date || '0000-00-00'}
 				overview={movie.overview}
 				poster={IMG_PATH + movie.poster_path}
 				backdrop={IMG_PATH + movie.backdrop_path}
@@ -28,7 +28,7 @@ export const RenderPanel = (data) =>
 			key={movie.id}
 			id={movie.id}
 			title={movie.title}
-			date={movie.release_date}
+			date={movie.release_date || '0000-00-00'}
 			overview={movie.overview}
 			poster={IMG_PATH + movie.poster_path}
 			backdrop={IMG_PATH + movie.backdrop_path}

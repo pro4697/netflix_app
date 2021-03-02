@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { movieApi, tvApi } from '../../Api';
+import { movieApi, tvApi } from '../../api';
 import { formatDate } from '../../utils';
 import Section from '../../components/Description';
 
@@ -197,15 +197,13 @@ const VideoName = styled.div`
 
 const Detail = (props) => {
 	const { location, history } = props;
-	const [state, setState] = useState({
-		isTv: false,
-		genres: [],
-		results: [],
-		runtime: null,
-		last_date: null,
-		episodes: null,
-		seasons: null,
-	});
+	const [isTv, setIsTv] = useState(false);
+	const [genres, setGenres] = useState([]);
+	const [results, setResults] = useState([]);
+	const [runtime, setRuntime] = useState(null);
+	const [lastDate, setLastDate] = useState(null);
+	const [episodes, setEpisodes] = useState(null);
+	const [seasons, setSeasons] = useState(null);
 
 	useEffect(() => {
 		if (location.state === undefined) {
@@ -214,7 +212,6 @@ const Detail = (props) => {
 
 		const getData = async () => {
 			if (!location.state.isTv) {
-				// 영화 추가데이터 가져오기
 				const {
 					data: { genres, runtime },
 				} = await movieApi.getDetail(location.state.id);
@@ -222,14 +219,16 @@ const Detail = (props) => {
 				const {
 					data: { results },
 				} = await movieApi.getVideos(location.state.id);
-				setState({ genres, runtime, results, isTv: location.state.isTv });
+				setGenres(genres);
+				setRuntime(runtime);
+				setResults(results);
+				setIsTv(location.state.isTv);
 			} else {
-				// 드라마 추가데이터 가져오기
 				const {
 					data: {
 						genres,
 						episode_run_time: runtime,
-						last_air_date: last_date,
+						last_air_date: lastDate,
 						number_of_episodes: episodes,
 						number_of_seasons: seasons,
 					},
@@ -238,15 +237,13 @@ const Detail = (props) => {
 				const {
 					data: { results },
 				} = await tvApi.getVideos(location.state.id);
-				setState({
-					genres,
-					runtime,
-					last_date,
-					episodes,
-					seasons,
-					results,
-					isTv: location.state.isTv,
-				});
+				setGenres(genres);
+				setRuntime(runtime);
+				setLastDate(lastDate);
+				setEpisodes(episodes);
+				setSeasons(seasons);
+				setResults(results);
+				setIsTv(location.state.isTv);
 			}
 		};
 
@@ -256,7 +253,6 @@ const Detail = (props) => {
 	window.scrollTo(0, 0);
 
 	if (location.state) {
-		const { genres, runtime, last_date, results, episodes, seasons, isTv } = state;
 		const overview = location.state.overview.split('. '); // 문단별로 자르고 마침표를 찍기
 		for (let i = 0; i < overview.length - 1; i++) {
 			overview[i] += '.';
@@ -301,7 +297,7 @@ const Detail = (props) => {
 								{formatDate(location.state.date || '0000-00-00')}
 							</Section>
 							{isTv ? (
-								<Section title='최신 방영일자'>{formatDate(last_date || '0000-00-00')}</Section>
+								<Section title='최신 방영일자'>{formatDate(lastDate || '0000-00-00')}</Section>
 							) : null}
 							<Section title='장르'>
 								{genres.map((g, idx) => (idx + 1 === genres.length ? g.name : `${g.name}•`))}

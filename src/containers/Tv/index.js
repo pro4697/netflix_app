@@ -1,69 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Loader from '../../components/Loader';
 import { RenderList } from '../../utils';
-import './Tv.css';
 
 import { getTvData } from '../../_actions/action';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-class Tv extends React.Component {
-	state = {
-		isLoading: true,
-		today: [],
-		thisWeek: [],
-		topRated: [],
-		popular: [],
-	};
+const Container = styled(motion.div)`
+	overflow-x: hidden;
+	padding-top: 30px;
+	padding-bottom: 40px;
+`;
 
-	async componentDidMount() {
-		if (!this.props.isSaved) {
-			this.props.dispatch(getTvData()).then((res) => {
-				this.setState({
-					isLoading: false,
-					today: res.payload.today,
-					thisWeek: res.payload.thisWeek,
-					topRated: res.payload.topRated,
-					popular: res.payload.popular,
+function Tv() {
+	const isSaved = useSelector((state) => state.store.tvData);
+	const dispatch = useDispatch();
+	const [isLoading, setIsLoading] = useState(true);
+	const [onlyOnce, setOnlyOnce] = useState(true);
+	const [today, setToday] = useState([]);
+	const [thisWeek, setThisWeek] = useState([]);
+	const [topRated, setTopRated] = useState([]);
+	const [popular, setPopular] = useState([]);
+
+	useEffect(() => {
+		console.log('useEffect');
+		const getData = async () => {
+			if (!isSaved) {
+				await dispatch(getTvData()).then((res) => {
+					setToday(res.payload.today);
+					setThisWeek(res.payload.thisWeek);
+					setTopRated(res.payload.topRated);
+					setPopular(res.payload.popular);
+					setIsLoading(false);
 				});
-			});
-		} else {
-			this.setState({
-				isLoading: false,
-				today: this.props.isSaved.payload.today,
-				thisWeek: this.props.isSaved.payload.thisWeek,
-				topRated: this.props.isSaved.payload.topRated,
-				popular: this.props.isSaved.payload.popular,
-			});
+				console.log('axios ' + isLoading);
+			} else {
+				setToday(isSaved.payload.today);
+				setThisWeek(isSaved.payload.thisWeek);
+				setTopRated(isSaved.payload.topRated);
+				setPopular(isSaved.payload.popular);
+				setIsLoading(false);
+				console.log('redux ' + isLoading);
+			}
+		};
+		if (onlyOnce) {
+			getData();
+			setOnlyOnce(false);
 		}
-	}
 
-	render() {
-		const { isLoading, today, thisWeek, topRated, popular } = this.state;
-		return (
-			<>
-				{isLoading ? (
-					<Loader />
-				) : (
-					<motion.div
-						className='tv__container'
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
-					>
-						{today?.length > 0 && RenderList('Today', today)}
-						{thisWeek?.length > 0 && RenderList('ThisWeek', thisWeek)}
-						{topRated?.length > 0 && RenderList('TopRated', topRated)}
-						{popular?.length > 0 && RenderList('Popular', popular)}
-					</motion.div>
-				)}
-			</>
-		);
-	}
+		return () => setIsLoading(false);
+	}, [isSaved, dispatch, isLoading, onlyOnce]);
+
+	return (
+		<>
+			{isLoading ? (
+				<Loader />
+			) : (
+				<Container initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+					{today?.length > 0 && RenderList('Today', today)}
+					{thisWeek?.length > 0 && RenderList('ThisWeek', thisWeek)}
+					{topRated?.length > 0 && RenderList('TopRated', topRated)}
+					{popular?.length > 0 && RenderList('Popular', popular)}
+				</Container>
+			)}
+		</>
+	);
 }
-
-const mapStateToProps = (state) => ({
-	isSaved: state.store.tvData,
-});
-
-export default connect(mapStateToProps)(Tv);
+export default Tv;

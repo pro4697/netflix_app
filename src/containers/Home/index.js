@@ -19,46 +19,42 @@ const Flicking = styled(F)`
 `;
 
 const Home = () => {
-	const [state, setState] = useState({
-		isLoading: true,
-		nowPlaying: [],
-		topRated: [],
-		popular: [],
-		upComing: [],
-	});
-
 	const isSaved = useSelector((state) => state.store.movieData);
 	const dispatch = useDispatch();
+	const [isLoading, setIsLoading] = useState(true);
+	const [onlyOnce, setOnlyOnce] = useState(true);
+	const [nowPlaying, setNowPlaying] = useState([]);
+	const [topRated, setTopRated] = useState([]);
+	const [popular, setPopular] = useState([]);
+	const [upComing, setUpComing] = useState([]);
 
 	useEffect(() => {
+		console.log('useEffect');
 		const getData = async () => {
 			if (!isSaved) {
-				// 처음 Movie탭으로 접속시 JSON 받아옴
-				dispatch(getMovieData()).then((res) => {
-					setState({
-						isLoading: false,
-						nowPlaying: res.payload.nowPlaying,
-						topRated: res.payload.topRated,
-						popular: res.payload.popular,
-						upComing: res.payload.upComing,
-					});
+				await dispatch(getMovieData()).then((res) => {
+					setNowPlaying(res.payload.nowPlaying);
+					setTopRated(res.payload.topRated);
+					setPopular(res.payload.topRated);
+					setUpComing(res.payload.upComing);
+					setIsLoading(false);
 				});
+				console.log('axios ' + isLoading);
 			} else {
-				// 이후 재접속시 Redux에서 가져옴
-				setState({
-					isLoading: false,
-					nowPlaying: isSaved.payload.nowPlaying,
-					topRated: isSaved.payload.topRated,
-					popular: isSaved.payload.popular,
-					upComing: isSaved.payload.upComing,
-				});
+				setNowPlaying(isSaved.payload.nowPlaying);
+				setTopRated(isSaved.payload.topRated);
+				setPopular(isSaved.payload.topRated);
+				setUpComing(isSaved.payload.upComing);
+				setIsLoading(false);
+				console.log('redux ' + isLoading);
 			}
 		};
+		if (onlyOnce) {
+			getData();
+			setOnlyOnce(false);
+		}
+	}, [isSaved, dispatch, isLoading, onlyOnce]);
 
-		getData();
-	}, [isSaved, dispatch]);
-
-	const { isLoading, nowPlaying, topRated, popular, upComing } = state;
 	return (
 		<>
 			{isLoading ? (

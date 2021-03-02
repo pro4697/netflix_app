@@ -32,20 +32,20 @@ const NavBottom = () => {
 	const { location } = useReactRouter();
 	const { pathname } = location;
 	const [color, setColor] = useState(['darkgrey', 'darkgrey', 'darkgrey']);
-	const [display, setDisplay] = useState(true);
+	const [display, setDisplay] = useState('true');
 
 	useEffect(() => {
 		if (pathname === '/') {
 			setColor(['white', 'darkgrey', 'darkgrey']);
-			setDisplay(true);
+			setDisplay('true');
 		} else if (pathname === '/tv') {
 			setColor(['darkgrey', 'white', 'darkgrey']);
-			setDisplay(true);
+			setDisplay('true');
 		} else if (pathname === '/search') {
 			setColor(['darkgrey', 'darkgrey', 'white']);
-			setDisplay(true);
+			setDisplay('true');
 		} else if (pathname === '/movie-detail') {
-			setDisplay(false);
+			setDisplay('false');
 		}
 	}, [pathname]);
 
