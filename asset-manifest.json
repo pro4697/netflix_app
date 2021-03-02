@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/netflix_app/static/js/main.e301078c.chunk.js",
-    "main.js.map": "/netflix_app/static/js/main.e301078c.chunk.js.map",
+    "main.js": "/netflix_app/static/js/main.85050b29.chunk.js",
+    "main.js.map": "/netflix_app/static/js/main.85050b29.chunk.js.map",
     "runtime~main.js": "/netflix_app/static/js/runtime~main.a1097332.js",
     "runtime~main.js.map": "/netflix_app/static/js/runtime~main.a1097332.js.map",
-    "static/js/2.ca798411.chunk.js": "/netflix_app/static/js/2.ca798411.chunk.js",
-    "static/js/2.ca798411.chunk.js.map": "/netflix_app/static/js/2.ca798411.chunk.js.map",
+    "static/js/2.51dff7e3.chunk.js": "/netflix_app/static/js/2.51dff7e3.chunk.js",
+    "static/js/2.51dff7e3.chunk.js.map": "/netflix_app/static/js/2.51dff7e3.chunk.js.map",
     "index.html": "/netflix_app/index.html",
-    "precache-manifest.4e4f092cbb76dde88684cad221481beb.js": "/netflix_app/precache-manifest.4e4f092cbb76dde88684cad221481beb.js",
+    "precache-manifest.23f970fd3b4ecc6e0237cceb2cbcb5b9.js": "/netflix_app/precache-manifest.23f970fd3b4ecc6e0237cceb2cbcb5b9.js",
     "service-worker.js": "/netflix_app/service-worker.js"
   }
 }
