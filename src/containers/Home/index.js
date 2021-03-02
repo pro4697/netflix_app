@@ -22,38 +22,29 @@ const Home = () => {
 	const isSaved = useSelector((state) => state.store.movieData);
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(true);
-	const [onlyOnce, setOnlyOnce] = useState(true);
 	const [nowPlaying, setNowPlaying] = useState([]);
 	const [topRated, setTopRated] = useState([]);
 	const [popular, setPopular] = useState([]);
 	const [upComing, setUpComing] = useState([]);
 
 	useEffect(() => {
-		console.log('useEffect');
-		const getData = async () => {
-			if (!isSaved) {
-				await dispatch(getMovieData()).then((res) => {
-					setNowPlaying(res.payload.nowPlaying);
-					setTopRated(res.payload.topRated);
-					setPopular(res.payload.topRated);
-					setUpComing(res.payload.upComing);
-					setIsLoading(false);
-				});
-				console.log('axios ' + isLoading);
-			} else {
-				setNowPlaying(isSaved.payload.nowPlaying);
-				setTopRated(isSaved.payload.topRated);
-				setPopular(isSaved.payload.topRated);
-				setUpComing(isSaved.payload.upComing);
+		if (!isSaved) {
+			dispatch(getMovieData()).then((res) => {
+				setNowPlaying(res.payload.nowPlaying);
+				setTopRated(res.payload.topRated);
+				setPopular(res.payload.popular);
+				setUpComing(res.payload.upComing);
 				setIsLoading(false);
-				console.log('redux ' + isLoading);
-			}
-		};
-		if (onlyOnce) {
-			getData();
-			setOnlyOnce(false);
+			});
+		} else {
+			setNowPlaying(isSaved.payload.nowPlaying);
+			setTopRated(isSaved.payload.topRated);
+			setPopular(isSaved.payload.popular);
+			setUpComing(isSaved.payload.upComing);
+			setIsLoading(false);
 		}
-	}, [isSaved, dispatch, isLoading, onlyOnce]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<>

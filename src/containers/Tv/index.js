@@ -17,40 +17,29 @@ function Tv() {
 	const isSaved = useSelector((state) => state.store.tvData);
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(true);
-	const [onlyOnce, setOnlyOnce] = useState(true);
 	const [today, setToday] = useState([]);
 	const [thisWeek, setThisWeek] = useState([]);
 	const [topRated, setTopRated] = useState([]);
 	const [popular, setPopular] = useState([]);
 
 	useEffect(() => {
-		console.log('useEffect');
-		const getData = async () => {
-			if (!isSaved) {
-				await dispatch(getTvData()).then((res) => {
-					setToday(res.payload.today);
-					setThisWeek(res.payload.thisWeek);
-					setTopRated(res.payload.topRated);
-					setPopular(res.payload.popular);
-					setIsLoading(false);
-				});
-				console.log('axios ' + isLoading);
-			} else {
-				setToday(isSaved.payload.today);
-				setThisWeek(isSaved.payload.thisWeek);
-				setTopRated(isSaved.payload.topRated);
-				setPopular(isSaved.payload.popular);
+		if (!isSaved) {
+			dispatch(getTvData()).then((res) => {
+				setToday(res.payload.today);
+				setThisWeek(res.payload.thisWeek);
+				setTopRated(res.payload.topRated);
+				setPopular(res.payload.popular);
 				setIsLoading(false);
-				console.log('redux ' + isLoading);
-			}
-		};
-		if (onlyOnce) {
-			getData();
-			setOnlyOnce(false);
+			});
+		} else {
+			setToday(isSaved.payload.today);
+			setThisWeek(isSaved.payload.thisWeek);
+			setTopRated(isSaved.payload.topRated);
+			setPopular(isSaved.payload.popular);
+			setIsLoading(false);
 		}
-
-		return () => setIsLoading(false);
-	}, [isSaved, dispatch, isLoading, onlyOnce]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<>

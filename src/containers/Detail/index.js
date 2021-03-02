@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { movieApi, tvApi } from '../../api';
 import { formatDate } from '../../utils';
@@ -29,29 +28,6 @@ const Container = styled(motion.div)`
 		line-height: 20px;
 		margin-top: 0;
 	}
-`;
-
-const BackBtn = styled.div`
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 100;
-	height: 50px;
-	padding: 20px;
-	margin: 0;
-	@media screen and (max-width: 768px) {
-		display: block;
-	}
-`;
-
-const IconArrow = styled(FontAwesomeIcon)`
-	color: grey;
-	height: 40px;
-	margin-top: -15px;
-	margin-left: -5px;
-	font-size: 20px;
-	padding: 0;
 `;
 
 const BackDrop = styled.div`
@@ -196,7 +172,7 @@ const VideoName = styled.div`
 `;
 
 const Detail = (props) => {
-	const { location, history } = props;
+	const { location } = props;
 	const [isTv, setIsTv] = useState(false);
 	const [genres, setGenres] = useState([]);
 	const [results, setResults] = useState([]);
@@ -250,7 +226,7 @@ const Detail = (props) => {
 		getData();
 	}, [location.state]);
 
-	window.scrollTo(0, 0);
+	// window.scrollTo(0, 0);
 
 	if (location.state) {
 		const overview = location.state.overview.split('. '); // 문단별로 자르고 마침표를 찍기
@@ -260,16 +236,6 @@ const Detail = (props) => {
 
 		return (
 			<Container initial='out' animate='in' exit='out' variants={PageAnimation}>
-				<Link
-					to=''
-					onClick={() => {
-						history.goBack();
-					}}
-				>
-					<BackBtn>
-						<IconArrow icon={faArrowLeft} />
-					</BackBtn>
-				</Link>
 				{location.state.backdrop !== 'https://image.tmdb.org/t/p/w500null' ? (
 					<BackDrop img={`url(${location.state.backdrop})`} />
 				) : null}
