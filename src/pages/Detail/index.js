@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { movieApi, tvApi } from '../../api';
-import { formatDate } from '../../utils';
+import { movieApi, tvApi } from '../../common/api';
+import { formatDate } from '../../common/utils';
 import Section from '../../components/Description';
 
 const PageAnimation = {
@@ -248,7 +248,7 @@ const Detail = (props) => {
 							alt={location.state.title}
 							onError={(e) => {
 								e.target.onerror = null;
-								e.target.src = process.env.PUBLIC_URL + '/netflix_logo.png';
+								e.target.src = process.env.PUBLIC_URL + '/no_img.png';
 							}}
 						/>
 					</picture>

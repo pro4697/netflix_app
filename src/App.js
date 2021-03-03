@@ -2,12 +2,11 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import Tv from './containers/Tv';
-import Home from './containers/Home';
-import Search from './containers/Search';
-import NavTop from './components/NavTop';
-import Detail from './containers/Detail';
-import NavBottom from './components/NavBottom';
+import Tv from './pages/Tv';
+import Home from './pages/Home';
+import Search from './pages/Search';
+import Detail from './pages/Detail';
+import { NavTop, NavBottom } from './components/Nav';
 
 const GlobalStyle = createGlobalStyle`
 	* {

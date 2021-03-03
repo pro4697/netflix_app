@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { RenderList } from '../../utils';
-import { movieApi, tvApi } from '../../api';
+import { RenderList } from '../../common/utils';
+import { movieApi, tvApi } from '../../common/api';
+import InputBox from './InputBox';
+import { searchData } from '../../_actions/action';
 
 const Container = styled(motion.div)`
 	overflow-x: hidden;
@@ -10,33 +13,23 @@ const Container = styled(motion.div)`
 	padding-bottom: 40px;
 `;
 
-const Form = styled.form`
-	margin-top: 20px;
-	margin-left: auto;
-	margin-right: auto;
-	height: 30px;
-	width: 80%;
-`;
-
-const Input = styled.input`
-	all: unset;
-	background-color: white;
-	width: 90%;
-	height: 100%;
-	text-align: center;
-	border-radius: 15px;
-	color: black;
-	font-size: 16px;
-	width: 100%;
-`;
-
 const Search = () => {
+	const storedData = useSelector((state) => state.store?.searchData?.payload);
+	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(true);
 	const [movies, setMovies] = useState([]);
 	const [tv, setTv] = useState([]);
-	const [value, setValue] = useState('');
 
-	const searchQuery = async () => {
+	useEffect(() => {
+		if (storedData?.results !== undefined) {
+			setMovies(storedData.results.movies);
+			setTv(storedData.results.tv);
+			setIsLoading(false);
+			console.log('리덕스에서 가져오기');
+		}
+	}, [storedData]);
+
+	const onSearch = async (value) => {
 		if (value !== '') {
 			const {
 				data: { results: movies },
@@ -46,28 +39,17 @@ const Search = () => {
 				data: { results: tv },
 			} = await tvApi.search(value);
 
-			setIsLoading(false);
-			setMovies(movies);
-			setTv(tv);
+			dispatch(searchData(value, { movies, tv }));
 		}
-	};
-
-	const handleChange = (e) => {
-		setValue(e.target.value);
-	};
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		searchQuery();
 	};
 
 	return (
 		<Container initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-			<Form onSubmit={handleSubmit}>
-				<Input value={value} onChange={handleChange} placeholder='키워드 입력' />
-			</Form>
+			{console.log('Render Search')}
+			<InputBox onSearch={onSearch} />
 			{isLoading ? null : (
 				<>
+					{console.log(movies.length + ' ' + tv.length)}
 					{movies?.length > 0 && RenderList('Movie', movies)}
 					{tv?.length > 0 && RenderList('TV Shows', tv)}
 					{tv?.length === 0 && movies?.length === 0 && RenderList('No Results')}

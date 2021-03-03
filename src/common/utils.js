@@ -1,17 +1,18 @@
 import React from 'react';
-import Section from './components/Section';
-import Movie from './components/MovieCard';
-import Panel from './components/Panel';
+import Section from '../components/Section';
+import Movie from '../components/MovieCard';
+import Panel from '../components/Panel';
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
 
 export const RenderList = (title, data) => (
 	<Section title={title}>
+		{console.log('RenderList ' + title)}
 		{data?.map((movie) => (
 			<Movie
 				key={movie.id}
 				id={movie.id}
 				title={movie.title || movie.name}
-				date={movie.release_date || movie.first_air_date}
+				date={movie.release_date || movie.first_air_date || '0000-00-00'}
 				overview={movie.overview}
 				poster={IMG_PATH + movie.poster_path}
 				backdrop={IMG_PATH + movie.backdrop_path}

@@ -5,7 +5,7 @@ import F from '@egjs/react-flicking';
 import { Fade, AutoPlay } from '@egjs/flicking-plugins';
 import { motion } from 'framer-motion';
 import Loader from '../../components/Loader';
-import { RenderList, RenderPanel } from '../../utils';
+import { RenderList, RenderPanel } from '../../common/utils';
 
 import { getMovieData } from '../../_actions/action';
 

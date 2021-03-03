@@ -1,6 +1,6 @@
-import { movieApi, tvApi } from '../api';
-import { MOVIE_DATA, TV_DATA } from './types';
-import { overviewReplace } from '../utils';
+import { movieApi, tvApi } from '../common/api';
+import { MOVIE_DATA, TV_DATA, SEARCH_DATA } from './types';
+import { overviewReplace } from '../common/utils';
 
 export const getMovieData = async () => {
 	const {
@@ -74,6 +74,16 @@ export const getTvData = async () => {
 			thisWeek,
 			topRated,
 			popular,
+		},
+	};
+};
+
+export const searchData = (inputValue, results) => {
+	return {
+		type: SEARCH_DATA,
+		payload: {
+			inputValue,
+			results,
 		},
 	};
 };

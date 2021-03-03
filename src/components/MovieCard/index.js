@@ -112,13 +112,13 @@ const Movie = ({ id, title, date, overview, poster, backdrop, vote, isTv }) => {
 							alt={title}
 							onError={(e) => {
 								e.target.onerror = null;
-								e.target.src = process.env.PUBLIC_URL + '/netflix_logo.png';
+								e.target.src = process.env.PUBLIC_URL + '/no_img.png';
 							}}
 							style={{ objectFit: 'cover' }}
 						/>
 					) : (
 						<Poster
-							src={process.env.PUBLIC_URL + '/netflix_logo.png'}
+							src={process.env.PUBLIC_URL + '/no_img.png'}
 							alt={title}
 							style={{ objectFit: 'cover' }}
 						/>

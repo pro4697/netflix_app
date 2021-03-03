@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Loader from '../../components/Loader';
-import { RenderList } from '../../utils';
+import { RenderList } from '../../common/utils';
 
 import { getTvData } from '../../_actions/action';
 import { useSelector, useDispatch } from 'react-redux';
