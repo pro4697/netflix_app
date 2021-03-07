@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -25,6 +25,7 @@ const Input = styled.input`
 function InputBox({ onSearch }) {
 	const inputValue = useSelector((state) => state.store?.searchData?.payload?.inputValue);
 	const [value, setValue] = useState(inputValue || '');
+	const ref = useRef();
 
 	const handleChange = (e) => {
 		setValue(e.target.value);
@@ -32,12 +33,13 @@ function InputBox({ onSearch }) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		ref.current.blur();
 		onSearch(value);
 	};
 
 	return (
 		<Form onSubmit={handleSubmit}>
-			<Input value={value} onChange={handleChange} placeholder='키워드 입력' />
+			<Input ref={ref} value={value} onChange={handleChange} placeholder='키워드 입력' />
 		</Form>
 	);
 }

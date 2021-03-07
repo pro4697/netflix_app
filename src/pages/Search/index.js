@@ -6,6 +6,7 @@ import { RenderList } from '../../common/utils';
 import { movieApi, tvApi } from '../../common/api';
 import InputBox from './InputBox';
 import { searchData } from '../../_actions/action';
+import Loader from './../../components/Loader/index';
 
 const Container = styled(motion.div)`
 	overflow-x: hidden;
@@ -17,6 +18,7 @@ const Search = () => {
 	const storedData = useSelector((state) => state.store?.searchData?.payload);
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(true);
+	const [isSearching, setIsSearching] = useState(false);
 	const [movies, setMovies] = useState([]);
 	const [tv, setTv] = useState([]);
 
@@ -25,11 +27,11 @@ const Search = () => {
 			setMovies(storedData.results.movies);
 			setTv(storedData.results.tv);
 			setIsLoading(false);
-			console.log('리덕스에서 가져오기');
 		}
 	}, [storedData]);
 
 	const onSearch = async (value) => {
+		setIsSearching(true);
 		if (value !== '') {
 			const {
 				data: { results: movies },
@@ -41,15 +43,16 @@ const Search = () => {
 
 			dispatch(searchData(value, { movies, tv }));
 		}
+		setIsSearching(false);
 	};
 
 	return (
 		<Container initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-			{console.log('Render Search')}
 			<InputBox onSearch={onSearch} />
-			{isLoading ? null : (
+			{isLoading ? null : isSearching ? (
+				<Loader />
+			) : (
 				<>
-					{console.log(movies.length + ' ' + tv.length)}
 					{movies?.length > 0 && RenderList('Movie', movies)}
 					{tv?.length > 0 && RenderList('TV Shows', tv)}
 					{tv?.length === 0 && movies?.length === 0 && RenderList('No Results')}

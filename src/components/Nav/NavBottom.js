@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilm, faTv, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
+	display: ${(props) => (props.display ? 'flex' : 'none')};
 	opacity: 0.85;
 	margin: auto;
 	z-index: 1;
@@ -13,7 +14,6 @@ const Container = styled.div`
 	bottom: 0;
 	width: 100%;
 	height: 40px;
-	display: ${(props) => (props.display ? 'flex' : 'none')};
 	background-color: black;
 	padding: 0 20px;
 	padding-top: -15px;
@@ -32,25 +32,25 @@ const NavBottom = () => {
 	const { location } = useReactRouter();
 	const { pathname } = location;
 	const [color, setColor] = useState(['darkgrey', 'darkgrey', 'darkgrey']);
-	const [display, setDisplay] = useState('true');
+	const [display, setDisplay] = useState(true);
 
 	useEffect(() => {
 		if (pathname === '/') {
 			setColor(['white', 'darkgrey', 'darkgrey']);
-			setDisplay('true');
+			setDisplay(true);
 		} else if (pathname === '/tv') {
 			setColor(['darkgrey', 'white', 'darkgrey']);
-			setDisplay('true');
+			setDisplay(true);
 		} else if (pathname === '/search') {
 			setColor(['darkgrey', 'darkgrey', 'white']);
-			setDisplay('true');
+			setDisplay(true);
 		} else if (pathname === '/movie-detail') {
-			setDisplay('false');
+			setDisplay(false);
 		}
 	}, [pathname]);
 
 	return (
-		<Container display={display}>
+		<Container display={+display}>
 			<CLink to='/'>
 				<Icon icon={faFilm} color={color[0]} />
 			</CLink>

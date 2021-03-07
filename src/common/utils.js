@@ -6,7 +6,6 @@ const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
 
 export const RenderList = (title, data) => (
 	<Section title={title}>
-		{console.log('RenderList ' + title)}
 		{data?.map((movie) => (
 			<Movie
 				key={movie.id}
