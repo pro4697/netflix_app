@@ -1,6 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Tv from './pages/Tv';
 import Home from './pages/Home';
@@ -26,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
 	return (
-		<HashRouter>
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<GlobalStyle />
 			<NavTop />
 			<AnimatePresence>
@@ -38,7 +38,7 @@ function App() {
 				</Switch>
 			</AnimatePresence>
 			<NavBottom />
-		</HashRouter>
+		</BrowserRouter>
 	);
 }
 
